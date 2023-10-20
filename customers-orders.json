@@ -1,0 +1,64 @@
+{
+    "generators": [
+        {
+            "table": "customers",
+            "row": {
+                "customerId": { "_gen": "uuid" },
+                "name": { "_gen": "string", "expr": "#{Name.full_name}" },
+                "gender": {
+                    "_gen": "weightedOneOf",
+                    "choices": [
+                        { "weight": 49, "value": "male" },
+                        { "weight": 49, "value": "female" },
+                        { "weight": 1,  "value": "non-binary" }
+                    ]
+                },
+                "address": { "_gen": "string", "expr": "#{Address.full_address}" },
+                "membership": {
+                    "_gen": "oneOf",
+                    "choices": [
+                        "bronze", "silver", "gold"
+                    ]
+                }
+            }
+        },
+        {
+            "table": "orders",
+            "row": {
+                "orderId": { "_gen": "uuid" },
+                "customerId": {
+                    "_gen": "lookup",
+                    "table": "customers",
+                    "path": ["customerId"]
+                },
+                "orderDate": {
+                    "_gen": "dateToday"
+                },
+                "cost": {
+                    "_gen": "number",
+                    "n": {
+                        "_gen": "normalDistribution",
+                        "mean": 50,
+                        "sd": 20
+                    }
+                },
+                "creditCardNumber": {
+                    "_gen": "string",
+                    "expr": "#{Finance.credit_card}"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "pg": {
+            "kind": "postgres",
+            "connectionConfigs": {
+                "host": "localhost",
+                "port": 5432,
+                "username": "postgres",
+                "password": "postgres",
+                "db": "mydb"
+            }
+        }
+    }
+}

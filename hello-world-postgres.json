@@ -1,0 +1,23 @@
+{
+    "generators": [{
+        "table": "testTable",
+        "row": {
+            "testColumn": {
+                "_gen": "oneOf",
+                "choices": [
+                    "👍", "🔥", "❤️"
+                ]
+            }
+        }
+    }],
+    "connections": {
+        "pg": {
+            "kind": "postgres",
+            "connectionConfigs": {
+                "host": "localhost",
+                "port": 5432,
+                "db": "mydb"
+            }
+        }
+    }
+}
