@@ -1,29 +1,38 @@
 {
-    "generators": {
-        "topic": "tweets",
-        "value": {
-            "userId": {
-                "_gen": "lookup",
-                "topic": "users",
-                "path": [
-                    "key"
-                ],
-                "histogram": {
-                    "_gen": "histogram",
-                    "bins": [
-                        {
-                            "bin": 0.2,
-                            "frequency": 8
-                        },
-                        {
-                            "bin": 0.8,
-                            "frequency": 2
-                        }
-                    ]
+    "generators": [
+        {
+            "topic": "users",
+            "key": {
+                "_gen": "string",
+                "expr": "#{Name.username}"
+            }
+        },
+        {
+            "topic": "tweets",
+            "value": {
+                "userId": {
+                    "_gen": "lookup",
+                    "topic": "users",
+                    "path": [
+                        "key"
+                    ],
+                    "histogram": {
+                        "_gen": "histogram",
+                        "bins": [
+                            {
+                                "bin": 0.2,
+                                "frequency": 8
+                            },
+                            {
+                                "bin": 0.8,
+                                "frequency": 2
+                            }
+                        ]
+                    }
                 }
             }
         }
-    },
+    ],
     "connections": {
         "dev-kafka": {
             "kind": "kafka",
@@ -34,5 +43,4 @@
             }
         }
     }
-
 }
