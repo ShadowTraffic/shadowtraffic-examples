@@ -65,7 +65,9 @@
         "dev-kafka": {
             "kind": "kafka",
             "producerConfigs": {
-                "boostrap.servers": "localhost:9092"
+                "bootstrap.servers": "localhost:9092",
+		"key.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer",
+                "value.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer"
             }
         },
         "dev-pg": {
