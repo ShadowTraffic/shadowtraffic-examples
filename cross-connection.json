@@ -1,33 +1,39 @@
 {
     "generators": [
         {
-            "topic": "customers",
-            "key": {
-                "name": {
-                    "_gen": "string",
-                    "expr": "#{Name.full_name}"
+            "connection": "postgres",
+            "table": "customers",
+            "row": {
+                "id": {
+                    "_gen": "uuid"
                 }
             }
         },
         {
+            "connection": "kafka",
             "topic": "orders",
             "value": {
-                "orderId": {
-                    "_gen": "uuid"
-                },
                 "customerId": {
                     "_gen": "lookup",
-                    "topic": "customers",
+                    "connection": "postgres",
+                    "table": "customers",
                     "path": [
-                        "key",
-                        "name"
+                        "id"
                     ]
                 }
             }
         }
     ],
     "connections": {
-        "dev-kafka": {
+        "postgres": {
+            "kind": "postgres",
+            "connectionConfigs": {
+                "host": "localhost",
+                "port": 5432,
+                "db": "mydb"
+            }
+        },
+        "kafka": {
             "kind": "kafka",
             "producerConfigs": {
                 "bootstrap.servers": "localhost:9092",

@@ -1,0 +1,42 @@
+{
+    "generators": [
+        {
+            "table": "messages",
+            "vars": {
+                "delay": {
+                    "_gen": "normalDistribution",
+                    "mean": 500,
+                    "sd": 40
+                }
+            },
+            "row": {
+                "id": {
+                    "_gen": "string",
+                    "expr": "#{Internet.macAddress}"
+                },
+                "delay": {
+                    "_gen": "var",
+                    "var": "delay"
+                }
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": {
+                        "_gen": "var",
+                        "var": "delay"
+                    }
+                }
+            }
+        }       
+    ],
+    "connections": {
+        "pg": {
+            "kind": "postgres",
+            "connectionConfigs": {
+                "host": "localhost",
+                "port": 5432,
+                "db": "mydb"
+            }
+        }
+    }
+}

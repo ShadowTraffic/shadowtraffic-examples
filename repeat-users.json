@@ -1,0 +1,44 @@
+{
+    "generators": [
+        {
+            "table": "posts",
+            "row": {
+                "poster": {
+                    "_gen": "weightedOneOf",
+                    "choices": [
+                        {
+                            "weight": 7,
+                            "value": {
+                                "_gen": "lookup",
+                                "table": "posts",
+                                "path": [
+                                    "poster"
+                                ]
+                            }
+                        },
+                        {
+                            "weight": 3,
+                            "value": {
+                                "_gen": "string",
+                                "expr": "#{Name.username}"
+                            }
+                        }
+                    ]
+                },
+                "timestamp": {
+                    "_gen": "now"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "pg": {
+            "kind": "postgres",
+            "connectionConfigs": {
+                "host": "localhost",
+                "port": 5432,
+                "db": "mydb"
+            }
+        }
+    }
+}

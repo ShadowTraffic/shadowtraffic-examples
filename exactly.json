@@ -1,13 +1,18 @@
 {
     "generators": [
         {
-            "table": "testTable",
+            "table": "orders",
             "row": {
-                "testColumn": {
-                    "_gen": "oneOf",
-                    "choices": [
-                        "👍", "🔥", "❤️"
-                    ]
+                "orderId": {
+                    "_gen": "uuid"
+                },
+                "orderDate": {
+                    "_gen": "dateToday"
+                }
+            },
+            "localConfigs": {
+                "events": {
+                    "exactly": 15
                 }
             }
         }

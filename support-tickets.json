@@ -1,0 +1,82 @@
+{
+    "generators": [
+        {
+            "connection": "dev-pg",
+            "table": "customers",
+            "row": {
+                "username": {
+                    "_gen": "string",
+                    "expr": "#{Name.username}"
+                },
+                "address": {
+                    "_gen": "string",
+                    "expr": "#{Address.full_address}"
+                }
+            }
+        },
+        {
+            "connection": "dev-kafka",
+            "topic": "purchases",
+            "key": {
+                "_gen": "uuid"
+            },
+            "value": {
+                "customerId": {
+                    "_gen": "lookup",
+                    "connection": "dev-pg",
+                    "table": "customers",
+                    "path": [
+                        "username"
+                    ]
+                },
+                "product": {
+                    "_gen": "string",
+                    "expr": "#{Commerce.product_name}"
+                },
+                "creditCard": {
+                    "_gen": "string",
+                    "expr": "#{Finance.credit_card}"
+                }
+            }
+        },
+        {
+            "connection": "dev-kafka",
+            "topic": "supportTickets",
+            "key": {
+                "_gen": "lookup",
+                "topic": "purchases",
+                "path": [
+                    "key"
+                ]
+            },
+            "value": {
+                "timestamp": {
+                    "_gen": "now"
+                }
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": 5000
+                }
+            }
+        }
+    ],
+    "connections": {
+        "dev-kafka": {
+            "kind": "kafka",
+            "producerConfigs": {
+                "boostrap.servers": "localhost:9092"
+            }
+        },
+        "dev-pg": {
+            "kind": "postgres",
+            "connectionConfigs": {
+                "host": "localhost",
+                "port": 5432,
+                "username": "postgres",
+                "password": "postgres",
+                "db": "mydb"
+            }
+        }
+    }
+}

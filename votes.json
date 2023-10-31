@@ -1,26 +1,24 @@
 {
     "generators": [
         {
-            "topic": "customers",
+            "topic": "votes",
             "key": {
-                "name": {
-                    "_gen": "string",
-                    "expr": "#{Name.full_name}"
-                }
-            }
-        },
-        {
-            "topic": "orders",
-            "value": {
-                "orderId": {
+                "voterId": {
                     "_gen": "uuid"
-                },
-                "customerId": {
-                    "_gen": "lookup",
-                    "topic": "customers",
-                    "path": [
-                        "key",
-                        "name"
+                }
+            },
+            "value": {
+                "candidate": {
+                    "_gen": "weightedOneOf",
+                    "choices": [
+                        {
+                            "weight": 57,
+                            "value": "Franklin Roosevelt"
+                        },
+                        {
+                            "weight": 43,
+                            "value": "Herbert Hoover"
+                        }
                     ]
                 }
             }

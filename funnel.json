@@ -1,0 +1,80 @@
+{
+    "generators": [
+        {
+            "topic": "funnelEvents",
+            "vars": {
+                "id": {
+                    "_gen": "string",
+                    "expr": "#{Name.username}"
+                }
+            },
+            "key": {
+                "_gen": "var",
+                "var": "id"
+            },
+            "value": {
+                "stage": {
+                    "_gen": "stateMachine",
+                    "for": {
+                        "_gen": "var",
+                        "var": "id"
+                    },
+                    "initial": "viewLandingPage",
+                    "transitions": {
+                        "viewLandingPage": "addItemToCart",
+                        "addItemToCart": {
+                            "_gen": "oneOf",
+                            "choices": [
+                                "viewCart",
+                                "addItemToCart"
+                            ]
+                        },
+                        "viewCart": "checkout"
+                    },
+                    "states": {
+                        "viewLandingPage": {
+                            "stageName": "landingPage",
+                            "referrer": {
+                                "_gen": "string",
+                                "expr": "#{Internet.url}"
+                            }
+                        },
+                        "addItemToCart": {
+                            "stageName": "addItem",
+                            "item": {
+                                "_gen": "string",
+                                "expr": "#{Commerce.productName}"
+                            }
+                        },
+                        "viewCart": {
+                            "stageName": "checkCart",
+                            "timestamp": {
+                                "_gen": "now"
+                            }
+                        },
+                        "checkout": {
+                            "stageName": "purchase",
+                            "price": {
+                                "_gen": "uniformDistribution",
+                                "bounds": [
+                                    1,
+                                    100
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "connections": {
+        "dev-kafka": {
+            "kind": "kafka",
+            "producerConfigs": {
+                "bootstrap.servers": "localhost:9092",
+                "key.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer",
+                "value.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer"
+            }
+        }
+    }
+}

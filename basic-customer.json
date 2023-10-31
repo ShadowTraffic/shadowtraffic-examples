@@ -1,0 +1,41 @@
+{
+    "generators": [
+        {
+            "table": "customers",
+            "row": {
+                "name": {
+                    "_gen": "string",
+                    "expr": "#{Name.full_name}"
+                },
+                "age": {
+                    "_gen": "integer",
+                    "n": {
+                        "_gen": "uniformDistribution",
+                        "bounds": [
+                            18,
+                            120
+                        ]
+                    }
+                },
+                "membership": {
+                    "_gen": "oneOf",
+                    "choices": [
+                        "gold",
+                        "silver",
+                        "bronze"
+                    ]
+                }
+            }
+        }
+    ],
+    "connections": {
+        "pg": {
+            "kind": "postgres",
+            "connectionConfigs": {
+                "host": "localhost",
+                "port": 5432,
+                "db": "mydb"
+            }
+        }
+    }
+}
