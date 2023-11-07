@@ -1,0 +1,51 @@
+{
+    "generators": [
+        {
+            "table": "sensorReadings",
+	    "vars": {
+		"now": {
+		    "_gen": "now"
+		}
+	    },
+            "row": {
+                "reading": {
+                    "_gen": "normalDistribution",
+		    "mean": 50,
+		    "sd": 4
+                },
+		"timestamp": {
+		    "_gen": "formatDateTime",
+		    "ms": {
+			"_gen": "uniformDistribution",
+			"bounds": [
+			    {
+				"_gen": "subtract",
+				"args": [
+				    { "_gen": "var", "var": "now" },
+				    86400000
+				]
+			    },
+			    {
+				"_gen": "add",
+				"args": [
+				    { "_gen": "var", "var": "now" },
+				    86400000
+				]
+			    }
+			]
+		    }
+		}
+            }
+        }
+    ],
+    "connections": {
+        "pg": {
+            "kind": "postgres",
+            "connectionConfigs": {
+                "host": "localhost",
+                "port": 5432,
+                "db": "mydb"
+            }
+        }
+    }
+}

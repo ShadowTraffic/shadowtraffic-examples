@@ -22,6 +22,7 @@ docker run --env-file license.env -v ./<configuration file>:/home/config.json sh
     - [Publish 80% of the tweets from 20% of the users](tweets.json)
     - [Send messages every 500 ms with a std dev of 40 ms](throttle.json)
     - [Place exactly 15 orders](exactly.json)
+    - [Pick a date/timestamp between yesterday and tomorrow](time.json)
 - Advanced examples
     - [70% of all posts are from repeat users](repeat-users.json)
     - [Harvest customer IDs from Postgres for Kafka events](cross-connection.json)
