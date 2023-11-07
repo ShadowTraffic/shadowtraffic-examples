@@ -7,8 +7,12 @@
                     "_gen": "uuid"
                 },
                 "orderDate": {
-                    "_gen": "dateToday"
-                }
+		    "_gen" : "formatDateTime",
+		    "ms" : {
+			"_gen" : "now"
+		    },
+		    "format" : "yyyy-MM-dd"
+		}
             },
             "localConfigs": {
                 "events": {
