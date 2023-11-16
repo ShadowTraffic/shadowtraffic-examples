@@ -5,7 +5,7 @@ This repo contains runnable examples of how to use [ShadowTraffic](http://shadow
 Run each of these with:
 
 ```
-docker run --env-file license.env -v ./<configuration file>:/home/config.json shadowtraffic/shadowtraffic:latest --config /home/config.json --sample 10 --stdout --watch
+docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.json shadowtraffic/shadowtraffic:latest --config /home/config.json --sample 10 --stdout --watch
 ```
 
 - First steps
