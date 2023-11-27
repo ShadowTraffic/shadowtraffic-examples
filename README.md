@@ -23,6 +23,8 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
     - [Send messages every 500 ms with a std dev of 40 ms](throttle.json)
     - [Place exactly 15 orders](exactly.json)
     - [Pick a date/timestamp between yesterday and tomorrow](time.json)
+    - [3 JVMs reporting their heap sizes which oscillate between 150 and 3000 megabytes](heap-readings.json)
+    - [5 sensors whose value is the previous value plus a random number between -1 and 1](sensors.json)
 - Advanced examples
     - [70% of all posts are from repeat users](repeat-users.json)
     - [Harvest customer IDs from Postgres for Kafka events](cross-connection.json)

@@ -1,0 +1,79 @@
+{
+    "generators": [
+        {
+            "table": "sensors",
+            "vars": {
+                "id": {
+                    "_gen": "oneOf",
+                    "choices": ["sensor-1", "sensor-2", "sensor-3", "sensor-4", "sensor-5"]
+                }
+            },
+            "row": {
+                "sensorId": {
+                    "_gen": "var", "var": "id"
+                },
+                "timestamp": {
+                    "_gen": "formatDateTime",
+                    "ms": {
+                        "_gen": "now"
+                    }
+                }
+            },
+            "stateMachine": {
+                "_gen": "stateMachine",
+                "for": {
+                    "_gen": "var",
+                    "var": "id"
+                },
+                "initial": "start",
+                "transitions": {
+                    "start": "update",
+                    "update": "update"
+                },
+                "states": {
+                    "start": {
+                        "row": {
+                            "value": {
+                                "_gen": "normalDistribution",
+                                "mean": 50,
+                                "sd": 5
+                            }
+                        }
+                    },
+                    "update": {
+                        "row": {
+                            "value": {
+                                "_gen": "add",
+                                "args": [
+                                    {
+                                        "_gen": "uniformDistribution",
+                                        "bounds": [-1, 1]
+                                    },
+                                    {
+                                        "_gen": "previousEvent",
+                                        "path": [ "row", "value" ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": 1000
+                }
+            }
+        }
+    ],
+    "connections": {
+        "pg": {
+            "kind": "postgres",
+            "connectionConfigs": {
+                "host": "localhost",
+                "port": 5432,
+                "db": "mydb"
+            }
+        }
+    }
+}
