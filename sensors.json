@@ -2,15 +2,15 @@
     "generators": [
         {
             "table": "sensors",
-            "vars": {
-                "id": {
-                    "_gen": "oneOf",
-                    "choices": ["sensor-1", "sensor-2", "sensor-3", "sensor-4", "sensor-5"]
-                }
+            "fork": {
+                "key": [
+                    "sensor-1", "sensor-2", "sensor-3", "sensor-4", "sensor-5"
+                ],
+                "stagger": { "ms": 250 }
             },
             "row": {
                 "sensorId": {
-                    "_gen": "var", "var": "id"
+                    "_gen": "var", "var": "forkKey"
                 },
                 "timestamp": {
                     "_gen": "formatDateTime",
@@ -21,10 +21,6 @@
             },
             "stateMachine": {
                 "_gen": "stateMachine",
-                "for": {
-                    "_gen": "var",
-                    "var": "id"
-                },
                 "initial": "start",
                 "transitions": {
                     "start": "update",

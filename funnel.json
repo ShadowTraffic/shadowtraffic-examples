@@ -2,57 +2,58 @@
     "generators": [
         {
             "topic": "funnelEvents",
-            "vars": {
-                "id": {
+            "fork": {
+                "key": {
                     "_gen": "string",
                     "expr": "#{Name.username}"
-                }
+                },
+                "stagger": { "ms": 200 }
             },
-            "key": {
-                "_gen": "var",
-                "var": "id"
-            },
-            "value": {
-                "stage": {
-                    "_gen": "stateMachine",
-                    "for": {
-                        "_gen": "var",
-                        "var": "id"
+            "key": { "_gen": "var", "var": "forkKey" },
+            "value": {},
+            "stateMachine": {
+                "_gen": "stateMachine",
+                "initial": "viewLandingPage",
+                "transitions": {
+                    "viewLandingPage": "addItemToCart",
+                    "addItemToCart": {
+                        "_gen": "oneOf",
+                        "choices": [
+                            "viewCart",
+                            "addItemToCart"
+                        ]
                     },
-                    "initial": "viewLandingPage",
-                    "transitions": {
-                        "viewLandingPage": "addItemToCart",
-                        "addItemToCart": {
-                            "_gen": "oneOf",
-                            "choices": [
-                                "viewCart",
-                                "addItemToCart"
-                            ]
-                        },
-                        "viewCart": "checkout"
-                    },
-                    "states": {
-                        "viewLandingPage": {
+                    "viewCart": "checkout"
+                },
+                "states": {
+                    "viewLandingPage": {
+                        "value": {
                             "stageName": "landingPage",
                             "referrer": {
                                 "_gen": "string",
                                 "expr": "#{Internet.url}"
                             }
-                        },
-                        "addItemToCart": {
+                        }
+                    },
+                    "addItemToCart": {
+                        "value": {
                             "stageName": "addItem",
                             "item": {
                                 "_gen": "string",
                                 "expr": "#{Commerce.productName}"
                             }
-                        },
-                        "viewCart": {
+                        }
+                    },
+                    "viewCart": {
+                        "value": {
                             "stageName": "checkCart",
                             "timestamp": {
                                 "_gen": "now"
                             }
-                        },
-                        "checkout": {
+                        }
+                    },
+                    "checkout": {
+                        "value": {
                             "stageName": "purchase",
                             "price": {
                                 "_gen": "uniformDistribution",
@@ -64,6 +65,9 @@
                         }
                     }
                 }
+            },
+            "localConfigs": {
+                "throttle": { "ms": 800 }
             }
         }
     ],
