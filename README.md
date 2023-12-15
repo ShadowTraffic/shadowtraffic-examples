@@ -30,3 +30,4 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
     - [Harvest customer IDs from Postgres for Kafka events](cross-connection.json)
     - [Customers go through a 4-stage funnel](funnel.json)
     - [Debezium envelopes have 3 discrete states](cdc.json)
+    - [3 support agents field phone calls, arriving once a second](call-center.json)

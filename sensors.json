@@ -3,9 +3,11 @@
         {
             "table": "sensors",
             "fork": {
-                "key": [
-                    "sensor-1", "sensor-2", "sensor-3", "sensor-4", "sensor-5"
-                ],
+                "key": {
+                    "_gen": "sequentialString",
+                    "expr": "sensor-~d"
+                },
+                "maxForks": 5,
                 "stagger": { "ms": 250 }
             },
             "row": {
@@ -13,7 +15,7 @@
                     "_gen": "var", "var": "forkKey"
                 },
                 "timestamp": {
-                    "_gen": "formatDateTime",
+                    "_gen": "toInstant",
                     "ms": {
                         "_gen": "now"
                     }
@@ -68,6 +70,8 @@
             "connectionConfigs": {
                 "host": "localhost",
                 "port": 5432,
+                "username": "postgres",
+                "password": "postgres",
                 "db": "mydb"
             }
         }

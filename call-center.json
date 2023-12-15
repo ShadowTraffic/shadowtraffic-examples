@@ -1,0 +1,51 @@
+{
+    "generators": [
+        {
+            "topic": "agents",
+            "value": {"id": {"_gen": "sequentialInteger" }},
+            "localConfigs": {"events": {"exactly": 3}}
+        },
+        {
+            "topic": "calls",
+            "fork": {
+                "key": {
+                    "_gen": "lookup",
+                    "topic": "agents",
+                    "path": [ "value", "id" ]
+                },
+                "stagger": { "ms": { "_gen": "normalDistribution", "mean": 1000, "sd": 200 } }
+            },
+            "varsOnce": {
+                "callId": {"_gen": "uuid"},
+                "duration": {"_gen": "uniformDistribution", "bounds": [1000, 4000]}
+            },
+            "value": {
+                "callId": {"_gen": "var", "var": "callId"},
+                "agentId": {"_gen": "var", "var": "forkKey"}
+            },
+            "stateMachine": {
+                "_gen": "stateMachine",
+                "initial": "startCall",
+                "transitions": {"startCall": "endCall"},
+                "states": {
+                    "startCall": {"action": "start", "timestamp": {"_gen": "now"}},
+                    "endCall": {"action": "end", "timestamp": {"_gen": "now"}}
+                }
+            },
+            "localConfigs": {
+                "throttle": {"ms": {"_gen": "var", "var": "duration"}},
+                "events": { "exactly": 2 }
+            }
+        }
+    ],
+    "connections": {
+        "kafka": {
+            "kind": "kafka",
+            "producerConfigs": {
+                "bootstrap.servers": "localhost:9092",
+                "key.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer",
+                "value.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer"
+            }
+        }
+    }
+}
