@@ -28,8 +28,8 @@
                 "initial": "startCall",
                 "transitions": {"startCall": "endCall"},
                 "states": {
-                    "startCall": {"action": "start", "timestamp": {"_gen": "now"}},
-                    "endCall": {"action": "end", "timestamp": {"_gen": "now"}}
+                    "startCall": {"value": {"action": "start", "timestamp": {"_gen": "now"}}},
+                    "endCall": {"value": {"action": "end", "timestamp": {"_gen": "now"}}}
                 }
             },
             "localConfigs": {
