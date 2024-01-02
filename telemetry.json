@@ -1,0 +1,40 @@
+{
+    "generators": [
+        {
+            "topic": "telemetryEvents",
+	    "value": {
+		"latency": {
+		    "_gen": "normalDistribution",
+                    "mean": 15,
+                    "sd": 2
+                }
+	    },
+	    "localConfigs": {
+                "delay": {
+                    "rate": 0.1,
+                    "ms": {
+                        "_gen": "uniformDistribution",
+                        "bounds": [200, 800]
+                    }
+                },
+		"discard": {
+		    "rate": 0.02
+		},
+                "repeat": {
+                    "rate": 0.05,
+                    "times": 2
+                }
+	    }
+        }
+    ],
+    "connections": {
+        "kafka": {
+            "kind": "kafka",
+            "producerConfigs": {
+                "bootstrap.servers": "localhost:9092",
+                "key.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer",
+                "value.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer"
+            }
+        }
+    }
+}
