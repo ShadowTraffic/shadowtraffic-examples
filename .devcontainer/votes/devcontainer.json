@@ -1,5 +1,6 @@
 {
     "name": "Votes",
+    "privileged": true,
     "postStartCommand": "docker run busybox echo 'Hiya'",
     "customizations": {
         "codespaces": {
