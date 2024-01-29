@@ -1,4 +1,11 @@
 {
     "name": "Votes",
-    "postStartCommand": "docker run busybox echo 'Hiya'"
+    "postStartCommand": "docker run busybox echo 'Hiya'",
+    "customizations": {
+        "codespaces": {
+            "openFiles": [
+                "votes.json"
+            ]
+        }
+    }
 }
