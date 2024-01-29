@@ -1,4 +1,7 @@
 {
     "name": "Votes",
-    "postCreateCommand": "sudo docker run busybox echo 'Hiya'"
+    "postCreateCommand": "sudo docker run busybox echo 'Hiya'",
+    "features": {
+	"ghcr.io/devcontainers/features/docker-in-docker:1": {}
+    }
 }
