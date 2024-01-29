@@ -1,4 +1,4 @@
 {
     "name": "Votes",
-    "postCreateCommand": "docker run busybox echo 'Hiya'"
+    "postCreateCommand": "sudo docker run busybox echo 'Hiya'"
 }
