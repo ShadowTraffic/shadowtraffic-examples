@@ -1,6 +1,9 @@
 {
     "name": "Votes",
     "privileged": true,
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    },
     "postStartCommand": "docker run busybox echo 'Hiya'",
     "customizations": {
         "codespaces": {
