@@ -1,0 +1,4 @@
+{
+    "name": "Sensors",
+    "postCreateCommand": "docker run --env-file license.env -v $(pwd)/sensors.json:/home/config.json shadowtraffic/shadowtraffic:latest --config /home/config.json --watch --sample 10 --stdout"
+}
