@@ -1,6 +1,7 @@
 {
     "name": "Votes",
     "image": "shadowtraffic/shadowtraffic:latest",
+    "postStartCommand": "source free-trial-license.env",
     "postAttachCommand": "java -jar /home/shadowtraffic.jar --config /workspaces/shadowtraffic-examples/votes.json --sample 10 --stdout --watch",
     "customizations": {
         "codespaces": {
