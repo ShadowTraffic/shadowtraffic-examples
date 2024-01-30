@@ -1,0 +1,12 @@
+{
+    "name": "repeat-users",
+    "image": "shadowtraffic/shadowtraffic:latest",
+    "postAttachCommand": "source free-trial-license.env && java -jar /home/shadowtraffic.jar --config /workspaces/shadowtraffic-examples/repeat-users.json --sample 10 --stdout --watch",
+    "customizations": {
+        "codespaces": {
+            "openFiles": [
+                "repeat-users.json"
+            ]
+        }
+    }
+}

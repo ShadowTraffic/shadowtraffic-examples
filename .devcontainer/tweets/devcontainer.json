@@ -1,0 +1,12 @@
+{
+    "name": "tweets",
+    "image": "shadowtraffic/shadowtraffic:latest",
+    "postAttachCommand": "source free-trial-license.env && java -jar /home/shadowtraffic.jar --config /workspaces/shadowtraffic-examples/tweets.json --sample 10 --stdout --watch",
+    "customizations": {
+        "codespaces": {
+            "openFiles": [
+                "tweets.json"
+            ]
+        }
+    }
+}

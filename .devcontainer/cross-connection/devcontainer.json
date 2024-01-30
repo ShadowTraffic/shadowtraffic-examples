@@ -1,0 +1,12 @@
+{
+    "name": "cross-Connection",
+    "image": "shadowtraffic/shadowtraffic:latest",
+    "postAttachCommand": "source free-trial-license.env && java -jar /home/shadowtraffic.jar --config /workspaces/shadowtraffic-examples/cross-connection.json --sample 10 --stdout --watch",
+    "customizations": {
+        "codespaces": {
+            "openFiles": [
+                "cross-connection.json"
+            ]
+        }
+    }
+}

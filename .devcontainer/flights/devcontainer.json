@@ -1,0 +1,12 @@
+{
+    "name": "flights",
+    "image": "shadowtraffic/shadowtraffic:latest",
+    "postAttachCommand": "source free-trial-license.env && java -jar /home/shadowtraffic.jar --config /workspaces/shadowtraffic-examples/flights.json --sample 10 --stdout --watch",
+    "customizations": {
+        "codespaces": {
+            "openFiles": [
+                "flights.json"
+            ]
+        }
+    }
+}

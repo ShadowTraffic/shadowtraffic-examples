@@ -1,0 +1,12 @@
+{
+    "name": "heap-Readings",
+    "image": "shadowtraffic/shadowtraffic:latest",
+    "postAttachCommand": "source free-trial-license.env && java -jar /home/shadowtraffic.jar --config /workspaces/shadowtraffic-examples/heap-readings.json --sample 10 --stdout --watch",
+    "customizations": {
+        "codespaces": {
+            "openFiles": [
+                "heap-readings.json"
+            ]
+        }
+    }
+}

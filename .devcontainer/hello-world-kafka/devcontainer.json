@@ -1,0 +1,12 @@
+{
+    "name": "hello-world-kafka",
+    "image": "shadowtraffic/shadowtraffic:latest",
+    "postAttachCommand": "source free-trial-license.env && java -jar /home/shadowtraffic.jar --config /workspaces/shadowtraffic-examples/hello-world-kafka.json --sample 10 --stdout --watch",
+    "customizations": {
+        "codespaces": {
+            "openFiles": [
+                "hello-world-kafka.json"
+            ]
+        }
+    }
+}
