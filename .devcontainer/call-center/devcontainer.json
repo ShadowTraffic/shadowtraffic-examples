@@ -1,5 +1,5 @@
 {
-    "name": "call-Center",
+    "name": "call-center",
     "image": "shadowtraffic/shadowtraffic:latest",
     "postAttachCommand": "source free-trial-license.env && java -jar /home/shadowtraffic.jar --config /workspaces/shadowtraffic-examples/call-center.json --sample 10 --stdout --watch",
     "customizations": {
