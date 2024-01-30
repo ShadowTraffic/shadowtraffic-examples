@@ -10,7 +10,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 
 - First steps
     - [![Demo](https://img.shields.io/badge/demo-%F0%9F%9A%80-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fhello-world-kafka%2Fdevcontainer.json) [Hello world with Kafka](hello-world-kafka.json)
-    - [![Demo](https://img.shields.io/badge/demo-%F0%9F%9A%80-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fhello-world-progres%2Fdevcontainer.json) [Hello world with Postgres](hello-world-postgres.json)
+    - [![Demo](https://img.shields.io/badge/demo-%F0%9F%9A%80-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fhello-world-postgres%2Fdevcontainer.json) [Hello world with Postgres](hello-world-postgres.json)
     - [![Demo](https://img.shields.io/badge/demo-%F0%9F%9A%80-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fhello-world-webhook%2Fdevcontainer.json) [Hello world with a webhook](hello-world-webhook.json)
     - [![Demo](https://img.shields.io/badge/demo-%F0%9F%9A%80-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fdecodable%2Fdevcontainer.json) [Hello world to Decodable](decodable.json)
 - Basic examples
