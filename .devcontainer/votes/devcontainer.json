@@ -1,7 +1,7 @@
 {
     "name": "Votes",
     "image": "shadowtraffic/shadowtraffic:latest",
-    "postAttachCommand": "java -jar /home/shadowtraffic.jar",
+    "postAttachCommand": "java -jar /home/shadowtraffic.jar --config /workspaces/shadowtraffic-examples/votes.json --sample 10 --stdout --watch",
     "customizations": {
         "codespaces": {
             "openFiles": [
