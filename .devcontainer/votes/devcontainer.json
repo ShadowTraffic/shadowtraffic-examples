@@ -1,10 +1,7 @@
 {
     "name": "Votes",
-    "privileged": true,
-    "features": {
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
-    },
-    "postStartCommand": "docker run busybox echo 'Hiya'",
+    "image": "shadowtraffic/shadowtraffic:latest",
+    "postAttachCommand": "java -jar /home/shadowtraffic.jar",
     "customizations": {
         "codespaces": {
             "openFiles": [
