@@ -1,0 +1,12 @@
+{
+    "name": "ip-rotation",
+    "image": "shadowtraffic/shadowtraffic:latest",
+    "postAttachCommand": "source free-trial-license.env && java -jar /home/shadowtraffic.jar --config /workspaces/shadowtraffic-examples/ip-rotation.json --sample 10 --stdout --watch",
+    "customizations": {
+        "codespaces": {
+            "openFiles": [
+                "ip-rotation.json"
+            ]
+        }
+    }
+}
