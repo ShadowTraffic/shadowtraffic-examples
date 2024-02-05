@@ -1,0 +1,77 @@
+{
+    "generators": [
+        {
+            "table": "users",
+            "fork": {
+                "key": { "_gen": "uuid" },
+                "stagger": { "ms": 250 }
+            },
+            "varsOnce": {
+                "emailAddress": {
+                    "_gen": "string",
+                    "expr": "#{Internet.emailAddress}"
+                }
+            },
+            "row": {
+                "id": { "_gen": "var", "var": "forkKey" },
+                "emailAddress": { "_gen": "var", "var": "emailAddress" },
+                "lastKnownIp": {
+                    "_gen": "string",
+                    "expr": "#{Internet.ipV4Address}"
+                }
+            },
+            "stateMachine": {
+                "_gen": "stateMachine",
+                "initial": "insert",
+                "transitions": {
+                    "insert": {
+                        "_gen": "weightedOneOf",
+                        "choices": [
+                            { "weight": 4, "value": "update" },
+                            { "weight": 1, "value": "delete" }
+                        ]
+                    },
+                    "update": {
+                        "_gen": "weightedOneOf",
+                        "choices": [
+                            { "weight": 3, "value": "update" },
+                            { "weight": 1, "value": "delete" }
+                        ]
+                    }
+                },
+                "states": {
+                    "insert": {
+                        "op": "insert"
+                    },
+                    "update": {
+                        "op": "update",
+                        "where": {
+                            "id": { "_gen": "var", "var": "forkKey" }
+                        }
+                    },
+                    "delete": {
+                        "op": "delete",
+                        "where": {
+                            "id": { "_gen": "var", "var": "forkKey" }
+                        }
+                    }
+                }
+            },
+            "localConfigs": {
+                "throttle": { "ms": 1000 }
+            }
+        }
+    ],
+    "connections": {
+        "pg": {
+            "kind": "postgres",
+            "connectionConfigs": {
+                "host": "localhost",
+                "port": 5432,
+                "username": "postgres",
+                "password": "postgres",
+                "db": "mydb"
+            }
+        }
+    }
+}
