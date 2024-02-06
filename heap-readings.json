@@ -1,124 +1,75 @@
 {
     "generators": [
         {
-            "table": "heapReadings",
-            "row": {
-                "jvm-id": "jvm-1",
-                "timestamp": {
-                    "_gen": "formatDateTime",
-                    "ms": { "_gen": "now" }
+            "topic": "jvmHeapReadings",
+            "fork": {
+                "key": {
+                    "_gen": "sequentialString",
+                    "expr": "jvm-~d"
                 },
-                "heapSize": {
-                    "_gen": "add",
-                    "args": [
-                        1200,
-                        {
-                            "_gen": "multiply",
-                            "args": [
-                                800,
-                                {
-                                    "_gen": "sin",
-                                    "degrees": { "_gen": "sequentialInteger" }
-                                },
-                                {
-                                    "_gen": "normalDistribution",
-                                    "mean": 0.6,
-                                    "sd": 0.1
-                                }
-                            ]                   
+                "maxForks": 30,
+                "stagger": { "ms": 2000 }
+            },
+            "key": {
+                "jvmId": {
+                    "_gen": "var", "var": "forkKey"
+                }
+            },
+            "value": {
+                "timestamp": {
+                    "_gen": "now"
+                }
+            },
+            "stateMachine": {
+                "_gen": "stateMachine",
+                "initial": "start",
+                "transitions": {
+                    "start": "update",
+                    "update": "update"
+                },
+                "states": {
+                    "start": {
+                        "value": {
+                            "heapSize": {
+                                "_gen": "normalDistribution",
+                                "mean": 50,
+                                "sd": 5
+                            }
                         }
-                    ]
+                    },
+                    "update": {
+                        "value": {
+                            "heapSize": {
+                                "_gen": "add",
+                                "args": [
+                                    {
+                                        "_gen": "uniformDistribution",
+                                        "bounds": [-1, 1]
+                                    },
+                                    {
+                                        "_gen": "previousEvent",
+                                        "path": [ "value", "heapSize" ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
                 }
             },
             "localConfigs": {
                 "throttle": {
-                    "ms": 5
-                }
-            }
-
-        },
-        {
-            "table": "heapReadings",
-            "row": {
-                "jvm-id": "jvm-2",
-                "timestamp": {
-                    "_gen": "formatDateTime",
-                    "ms": { "_gen": "now" }
-                },
-                "heapSize": {
-                    "_gen": "add",
-                    "args": [
-                        1500,
-                        {
-                            "_gen": "multiply",
-                            "args": [
-                                1000,
-                                {
-                                    "_gen": "sin",
-                                    "degrees": { "_gen": "sequentialInteger" }
-                                },
-                                {
-                                    "_gen": "normalDistribution",
-                                    "mean": 0.8,
-                                    "sd": 0.2
-                                }
-                            ]                   
-                        }
-                    ]
-                }
-            },
-            "localConfigs": {
-                "throttle": {
-                    "ms": 13
-                }
-            }
-        },
-        {
-            "table": "heapReadings",
-            "row": {
-                "jvm-id": "jvm-3",
-                "timestamp": {
-                    "_gen": "formatDateTime",
-                    "ms": { "_gen": "now" }
-                },
-                "heapSize": {
-                    "_gen": "add",
-                    "args": [
-                        1100,
-                        {
-                            "_gen": "multiply",
-                            "args": [
-                                300,
-                                {
-                                    "_gen": "sin",
-                                    "degrees": { "_gen": "sequentialInteger" }
-                                },
-                                {
-                                    "_gen": "normalDistribution",
-                                    "mean": 0.95,
-                                    "sd": 0.01
-                                }
-                            ]                   
-                        }
-                    ]
-                }
-            },
-            "localConfigs": {
-                "throttle": {
-                    "ms": 8
+                    "ms": 250
                 }
             }
         }
     ],
     "connections": {
-        "pg": {
-            "kind": "postgres",
-            "connectionConfigs": {
-                "host": "localhost",
-                "port": 5432,
-                "username": "postgres",
-                "password": "postgres",
-                "db": "mydb"
+        "dev-kafka": {
+            "kind": "kafka",
+            "producerConfigs": {
+                "bootstrap.servers": "localhost:9092",
+                "key.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer",
+                "value.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer"
             }
         }
     }

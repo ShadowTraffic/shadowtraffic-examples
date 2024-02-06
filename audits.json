@@ -1,0 +1,86 @@
+{
+    "generators": [
+        {
+            "topic": "merchants",
+            "key": {
+                "merchantId": {
+                    "_gen": "sequentialString",
+                    "expr": "merchant-~d"
+                }
+            },
+            "value": {
+                "name": {
+                    "_gen": "string",
+                    "expr": "#{Company.name}"
+                },
+                "location": {
+                    "_gen": "string",
+                    "expr": "#{Address.latitude}, #{Address.longitude}"
+                }
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": {
+                        "_gen": "uniformDistribution",
+                        "bounds": [500, 2000]
+                    }
+                },
+                "events": {
+                    "exactly": 200
+                }
+            }
+        },
+        {
+            "topic": "audits",
+            "value": {
+                "against": {
+                    "_gen": "lookup",
+                    "topic": "merchants",
+                    "path": ["key", "merchantId"]
+                },
+                "auditDate": {
+                    "_gen": "formatDateTime",
+                    "format": "yyy-MM-dd",
+                    "ms": {
+                        "_gen": "subtract",
+                        "args": [
+                            {
+                                "_gen": "now"
+                            },
+                            {
+                                "_gen": "uniformDistribution",
+                                "bounds": [604800000, 2592000000]
+                            }
+                        ]
+                    }
+                },
+                "findings": {
+                    "_gen": "weightedOneOf",
+                    "choices": [
+                        { "weight": 9, "value": "Acceptable" },
+                        { "weight": 1, "value": "KYC violation" }
+                    ]
+                }
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": {
+                        "_gen": "normalDistribution",
+                        "mean": 2160000000,
+                        "sd": 500000
+                    }
+                }
+            }
+        }
+    ],
+    "connections": {
+        "dev-kafka": {
+            "kind": "kafka",
+            "producerConfigs": {
+                "bootstrap.servers": "localhost:9092",
+                "key.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer",
+                "value.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer"
+            }
+        }
+    }
+}

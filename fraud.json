@@ -1,0 +1,135 @@
+{
+    "generators": [
+        {
+            "topic": "accounts",
+            "key": {
+                "accountId": {
+                    "_gen": "sequentialInteger"
+                }
+            },
+            "value": {
+                "name": {
+                    "_gen": "string",
+                    "expr": "#{Name.fullName}"
+                       
+                },
+                "accountType": {
+                    "_gen": "oneOf",
+                    "choices": ["checking", "savings"]
+                }
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": 500
+                }
+            }
+        },
+        {
+            "topic": "transactions",
+            "key": {
+                "transactionId": {
+                    "_gen": "uuid"
+                }
+            },
+            "value": {
+                "accountId": {
+                    "_gen": "lookup",
+                    "topic": "accounts",
+                    "path": ["key", "accountId"]
+                },
+                "amount": {
+                    "_gen": "weightedOneOf",
+                    "choices": [
+                        {
+                            "weight": 19,
+                            "value": {
+                                "_gen": "uniformDistribution",
+                                "bounds": [1, 300]
+                            }
+                        },
+                        {
+                            "weight": 1,
+                            "value": {
+                                "_gen": "normalDistribution",
+                                "mean": 3000,
+                                "sd": 500
+                            }
+                        }
+                    ]
+                },
+                "transactionCategory": {
+                    "_gen": "string",
+                    "expr": "#{Commerce.department}"
+                },
+                "timestamp": {
+                    "_gen": "now"
+                }
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": 150
+                }
+            }
+        },
+        {
+            "topic": "logins",
+            "fork": {
+                "key": {
+                    "_gen": "lookup",
+                    "topic": "accounts",
+                    "path": ["key", "accountId"]
+                },
+                "staggerMs": 500
+            },
+            "varsOnce": {
+                "ip": {
+                    "_gen": "string",
+                    "expr": "#{Internet.ipV4Address}"
+                }
+            },
+            "value": {
+                "accountId": {
+                    "_gen": "var",
+                    "var": "forkKey"
+                },
+                "ip": {
+                    "_gen": "weightedOneOf",
+                    "choices": [
+                        {
+                            "weight": 99,
+                            "value": {
+                                "_gen": "var",
+                                "var": "ip"
+                            }
+                        },
+                        {
+                            "weight": 1,
+                            "value": {
+                                "_gen": "string",
+                                "expr": "#{Internet.ipV4Address}"
+                            }
+                        }
+                    ]
+                },
+                "timestamp": {
+                    "_gen": "now"
+                }
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": 500
+                }
+            }
+        }
+    ],
+    "connections": {
+        "dev-kafka": {
+            "kind": "kafka",
+            "producerConfigs": {
+                "bootstrap.servers": "localhost:9092",
+                "key.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer",
+                "value.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer"
+            }
+        }
+    }
+}

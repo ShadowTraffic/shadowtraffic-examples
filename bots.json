@@ -1,0 +1,173 @@
+{
+    "generators": [
+        {
+            "topic": "users",
+            "key": {
+                "id": { "_gen": "uuid" }
+            },
+            "value": {
+                "username": {
+                    "_gen": "string",
+                    "expr": "#{Name.username}"
+                },
+                "updatedAt": {
+                    "_gen": "now"
+                },
+                "followerCount": {
+                    "_gen": "integer",
+                    "n": {
+                        "_gen": "uniformDistribution",
+                        "bounds": [0, 2000]
+                    }
+                },
+                "followingCount": {
+                    "_gen": "integer",
+                    "n": {
+                        "_gen": "normalDistribution",
+                        "mean": 500,
+                        "sd": 200
+                    }
+                }
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": 1000
+                }
+            }
+        },
+        {
+            "topic": "posts",
+            "fork": {
+                "key": {
+                    "_gen": "uuid"
+                },
+                "stagger": {
+                    "ms": {
+                        "_gen": "uniformDistribution",
+                        "bounds": [15, 50]
+                    }
+                }
+            },
+            "key": {
+                "_gen": "var", "var": "forkKey"
+            },
+            "value": {
+                "by": {
+                    "_gen": "lookup",
+                    "topic": "users",
+                    "path": ["key", "id"]
+                },
+                "content": {
+                    "_gen": "string",
+                    "expr": "#{Lorem.paragraph}"
+                },
+                "timestamp": {
+                    "_gen": "now"
+                }
+            },
+            "stateMachine": {
+                "_gen": "stateMachine",
+                "initial": "post",
+                "transitions": {
+                    "post": {
+                        "_gen": "weightedOneOf",
+                        "choices": [
+                            { "weight": 18, "value": "exit" },
+                            { "weight": 1, "value": "like" },
+                            { "weight": 1, "value": "share" }
+                        ]
+                    },
+                    "like": {
+                        "_gen": "weightedOneOf",
+                        "choices": [
+                            { "weight": 18, "value": "exit" },
+                            { "weight": 1, "value": "like" },
+                            { "weight": 1, "value": "share" }
+                        ]
+                    },
+                    "share":{
+                        "_gen": "weightedOneOf",
+                        "choices": [
+                            { "weight": 18, "value": "exit" },
+                            { "weight": 1, "value": "like" },
+                            { "weight": 1, "value": "share" }
+                        ]
+                    }
+                },
+                "states": {
+                    "post": {
+                        "value": {
+                            "likes": 0,
+                            "shares": 0
+                        }
+                    },
+                    "like": {
+                        "value": {
+                            "_gen": "merge",
+                            "objects": [
+                                { "_gen": "previousEvent", "path": [ "value" ] },
+                                {
+                                    "likes": {
+                                        "_gen": "add", "args": [
+                                            { "_gen": "previousEvent", "path": ["value", "likes"] },
+                                            1
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "share": {
+                        "value": {
+                            "_gen": "merge",
+                            "objects": [
+                                { "_gen": "previousEvent", "path": [ "value" ] },
+                                {
+                                    "shares": {
+                                        "_gen": "add", "args": [
+                                            { "_gen": "previousEvent", "path": ["value", "shares"] },
+                                            1
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": {
+                        "_gen": "normalDistribution",
+                        "mean": 50,
+                        "sd": 20
+                    }
+                },
+                "delay": {
+                    "rate": 0.1,
+                    "ms": {
+                        "_gen": "uniformDistribution",
+                        "bounds": [200, 800]
+                    }
+                },
+		"discard": {
+		    "rate": 0.02
+		},
+                "repeat": {
+                    "rate": 0.05,
+                    "times": 2
+                }
+            }
+        }
+    ],
+    "connections": {
+        "dev-kafka": {
+            "kind": "kafka",
+            "producerConfigs": {
+                "bootstrap.servers": "localhost:9092",
+                "key.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer",
+                "value.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer"
+            }
+        }
+    }
+}
