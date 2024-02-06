@@ -1,0 +1,12 @@
+{
+    "name": "inventory-queries",
+    "image": "shadowtraffic/shadowtraffic:latest",
+    "postAttachCommand": "source free-trial-license.env && java -jar /home/shadowtraffic.jar --config /workspaces/shadowtraffic-examples/inventory-queries.json --sample 10 --stdout --watch",
+    "customizations": {
+        "codespaces": {
+            "openFiles": [
+                "inventory-queries.json"
+            ]
+        }
+    }
+}

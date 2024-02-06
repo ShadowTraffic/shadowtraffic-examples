@@ -1,0 +1,66 @@
+{
+    "generators": [
+        {
+            "topic": "transaction.input.topic",
+            "value": {
+                "transactionId": {
+                    "_gen": "sequentialInteger"
+                },
+                "ts": {
+                    "_gen": "now"
+                },
+                "itemId": {
+                    "_gen": "sequentialString",
+                    "expr": "item_~d"
+                },
+                "quantity": {
+                    "_gen": "integer",
+                    "n": {
+                        "_gen": "uniformDistribution",
+                        "bounds": [1, 5]
+                    }
+                }
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": {
+                        "_gen": "normalDistribution",
+                        "mean": 200,
+                        "sd": 50
+                    }
+                }
+            }
+        },
+        {
+            "topic": "query.input.topic",
+            "value": {
+                "queryId": {
+                    "_gen": "sequentialInteger"
+                },
+                "ts": {
+                    "_gen": "now"
+                },
+                "itemId": {
+                    "_gen": "lookup",
+                    "topic": "transaction.input.topic",
+                    "path": [ "value", "itemId" ]
+                }
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": 500
+                }
+            }
+        }
+    ],
+    "connections": {
+        "dev-kafka": {
+            "kind": "kafka",
+            "producerConfigs": {
+                "bootstrap.servers": "localhost:9092",
+                "key.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer",
+                "value.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer"
+            }
+        }
+    }
+}
