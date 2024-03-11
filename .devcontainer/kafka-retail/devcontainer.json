@@ -1,0 +1,12 @@
+{
+    "name": "kafka-retail",
+    "image": "shadowtraffic/shadowtraffic:latest",
+    "postAttachCommand": "source free-trial-license.env && java -jar /home/shadowtraffic.jar --config /workspaces/shadowtraffic-examples/kafka-retail.json --sample 10 --stdout --watch",
+    "customizations": {
+        "codespaces": {
+            "openFiles": [
+                "kafka-retail.json"
+            ]
+        }
+    }
+}

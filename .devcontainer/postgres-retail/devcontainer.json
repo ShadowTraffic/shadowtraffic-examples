@@ -1,0 +1,12 @@
+{
+    "name": "postgres-etail",
+    "image": "shadowtraffic/shadowtraffic:latest",
+    "postAttachCommand": "source free-trial-license.env && java -jar /home/shadowtraffic.jar --config /workspaces/shadowtraffic-examples/postgres-retail.json --sample 10 --stdout --watch",
+    "customizations": {
+        "codespaces": {
+            "openFiles": [
+                "postgres-retail.json"
+            ]
+        }
+    }
+}
