@@ -1,0 +1,12 @@
+{
+    "name": "s3-retail",
+    "image": "shadowtraffic/shadowtraffic:latest",
+    "postAttachCommand": "source free-trial-license.env && java -jar /home/shadowtraffic.jar --config /workspaces/shadowtraffic-examples/s3-retail.json --sample 10 --stdout --watch",
+    "customizations": {
+        "codespaces": {
+            "openFiles": [
+                "s3-retail.json"
+            ]
+        }
+    }
+}

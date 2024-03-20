@@ -1,0 +1,22 @@
+{
+    "generators": [
+        {
+            "bucket": "testBucket",
+            "data": {
+                "_gen": "oneOf",
+                "choices": [
+                    "👍", "🔥", "❤️"
+                ]
+            },
+            "bucketConfigs": {
+                "format": "jsonl",
+                "keyPrefix": "part-"
+            }
+        }        
+    ],
+    "connections": {
+        "s3": {
+            "kind": "s3"
+        }
+    }
+}

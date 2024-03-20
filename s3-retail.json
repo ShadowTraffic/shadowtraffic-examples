@@ -1,0 +1,80 @@
+{
+    "generators": [
+        {
+            "bucket": "customers",
+            "bucketConfigs": {
+                "format": "jsonl",
+                "keyPrefix": "part-"
+            },
+            "data": {
+                "customerId": { "_gen": "uuid" },
+                "name": {
+                    "_gen": "string", "expr": "#{Name.fullName}"
+                },
+                "birthday": {
+                    "_gen": "string", "expr": "#{Date.birthday '18','80'}"
+                },
+                "directSubscription": {
+                    "_gen": "boolean"
+                },
+                "membershipLevel": {
+                    "_gen": "oneOf", "choices": ["free", "pro", "elite"]
+                },
+                "shippingAddress": {
+                    "_gen": "string", "expr": "#{Address.fullAddress}"
+                },
+                "activationDate": {
+                    "_gen": "formatDateTime",
+                    "ms": {
+                        "_gen": "uniformDistribution",
+                        "bounds": [ 1710176905, { "_gen": "now" } ]
+                    }
+                }
+            }
+        },
+        {
+            "bucket": "orders",
+            "bucketConfigs": {
+                "format": "jsonl",
+                "keyPrefix": "part-"
+            },
+            "data": {
+                "orderId": { "_gen": "uuid" },
+                "customerId": {
+                    "_gen": "lookup",
+                    "bucket": "customers",
+                    "path": ["data", "customerId"]
+                },
+                "orderNumber": {
+                    "_gen": "sequentialInteger"
+                },
+                "product": { "_gen": "string", "expr": "#{Commerce.productName}" },
+                "backordered": {
+                    "_gen": "weightedOneOf",
+                    "choices": [
+                        { "weight": 19, "value": false },
+                        { "weight": 1,  "value": true }
+                    ]
+                },
+                "cost": {
+                    "_gen": "normalDistribution",
+                    "mean": 100,
+                    "sd": 20
+                },
+                "description": { "_gen": "string", "expr": "#{Lorem.paragraph}" },
+                "timestamp": { "_gen": "now" },
+                "creditCardNumber": { "_gen": "string", "expr": "#{Business.creditCardNumber}" },
+                "discountPercent": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [0, 10],
+                    "decimals": 0
+                }
+            }
+        }
+    ],
+    "connections": {
+        "s3": {
+            "kind": "s3"
+        }
+    }
+}
