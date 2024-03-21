@@ -1,0 +1,122 @@
+{
+    "generators": [
+        {
+            "table": "rides",
+            "vars": {
+                "pickup": {
+                    "_gen": "now"
+                },
+                "dropoff": {
+                    "_gen": "add",
+                    "args": [
+                        { "_gen": "var", "var": "pickup" },
+                        { "_gen": "normalDistribution", "mean": 600, "sd": 100}
+                    ]
+                },
+                "fare_amount": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [2.5, 200.0],
+                    "decimals": 2
+                },
+                "extra": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [0.0, 50.0],
+                    "decimals": 2
+                },
+                "mta_tax": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [0.5, 1.0],
+                    "decimals": 2
+                },
+                "tip_amount": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [0.0, 100.0],
+                    "decimals": 2
+                },
+                "tolls_amount": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [0.0, 50.0],
+                    "decimals": 2
+                },
+                "improvement_surcharge": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [0.3, 0.4],
+                    "decimals": 2
+                }
+            },
+            "row": {
+                "vendor_id": {
+                    "_gen": "string",
+                    "expr": "#{Company.name}"
+                },
+                "pickup_datetime": {
+                    "_gen": "var",
+                    "var": "pickup"
+                },
+                "dropoff_datetime": {
+                    "_gen": "var",
+                    "var": "dropoff"
+                },
+                "passenger_count": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [1, 6],
+                    "decimals": 0
+                },
+                "trip_distance": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [0.1, 100.0]
+                },
+                "pickup_longitude": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [-180, 180]
+                },
+                "pickup_latitude": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [-90, 90]
+                },
+                "rate_code": {
+                    "_gen": "oneOf",
+                    "choices": [1, 2, 3, 4, 5, 6]
+                },
+                "dropoff_longitude": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [-180, 180]
+                },
+                "dropoff_latitude": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [-90, 90]
+                },
+                "payment_type": {
+                    "_gen": "oneOf",
+                    "choices": [1, 2, 3, 4, 5, 6]
+                },
+                "fare_amount": { "_gen": "var", "var": "fare_amount" },
+                "extra": { "_gen": "var", "var": "extra" },
+                "mta_tax": { "_gen": "var", "var": "mta_tax" },
+                "tip_amount": { "_gen": "var", "var": "tip_amount" },
+                "tolls_amount": { "_gen": "var", "var": "tolls_amount" },
+                "improvement_surcharge": { "_gen": "var", "var": "improvement_surcharge" },
+                "total_amount": {
+                    "_gen": "add",
+                    "args": [
+                        { "_gen": "var", "var": "fare_amount" },
+                        { "_gen": "var", "var": "extra" },
+                        { "_gen": "var", "var": "mta_tax" },
+                        { "_gen": "var", "var": "tolls_amount" },
+                        { "_gen": "var", "var": "improvement_surcharge" }
+                    ]
+                }
+            }
+        }
+    ],
+    "connections": {
+        "pg": {
+            "kind": "postgres",
+            "connectionConfigs": {
+                "host": "localhost",
+                "port": 5432,
+                "db": "mydb"
+            }
+        }
+    }
+}
