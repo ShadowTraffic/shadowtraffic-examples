@@ -25,7 +25,7 @@
                     "_gen": "string",
                     "expr": "52.4.0.0.#{octet}"
                 },
-                "timestamp": {
+                "create_ts": {
                     "_gen": "now"
                 },
                 "packetSizeBytes": {
