@@ -1,0 +1,97 @@
+{
+    "generators": [
+        {
+            "topic": "shoppingCarts",
+            "fork": {
+                "key": {
+                    "_gen": "string",
+                    "expr": "#{Name.username}"
+                },
+                "stagger": {
+                    "ms": 1000
+                }
+            },
+            "key": {
+                "cartId": { "_gen": "var", "var": "forkKey" }
+            },
+            "value": {
+                "timestamp": {
+                    "_gen": "now"
+                }
+            },
+            "stateMachine": {
+                "_gen": "stateMachine",
+                "initial": "OPEN",
+                "transitions": {
+                    "OPEN": {
+                        "_gen": "oneOf",
+                        "choices": ["OPEN", "MODIFIED", "CANCELLED"]
+                    },
+                    "MODIFIED": {
+                        "_gen": "oneOf",
+                        "choices": ["MODIFIED", "CHECKED_OUT", "CANCELLED"]
+                    }
+                },
+                "states": {
+                    "OPEN": {
+                        "value": {
+                            "cartState": "OPEN"
+                        }
+                    },
+                    "MODIFIED": {
+                        "value": {
+                            "cartState": "MODIFIED",
+                            "items": {
+                                "_gen": "repeatedly",
+                                "n": {
+                                    "_gen": "uniformDistribution",
+                                    "bounds": [1, 3]
+                                },
+                                "target": {
+                                    "_gen": "string",
+                                    "expr": "#{Commerce.productName}"
+                                }
+                            },
+                            "additionalCost": {
+                                "_gen": "normalDistribution",
+                                "mean": 50,
+                                "sd": 10,
+                                "decimals": 2
+                            }
+                        }
+                    },
+                    "CHECKED_OUT": {
+                        "value": {
+                            "cartState": "CHECKED_OUT"
+                        }
+                    },
+                    "CANCELLED": {
+                        "value": {
+                            "cartState": "CANCELLED"
+                        }
+                    }
+                }
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": {
+                        "_gen": "normalDistribution",
+                        "mean": 60000,
+                        "sd": 10000
+                    }
+                }
+            }
+
+        }
+    ],
+    "connections": {
+        "kafka": {
+            "kind": "kafka",
+            "producerConfigs": {
+                "bootstrap.servers": "localhost:9092",
+                "key.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer",
+                "value.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer"
+            }
+        }
+    }
+}
