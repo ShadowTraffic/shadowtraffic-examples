@@ -1,0 +1,93 @@
+{
+    "generators": [
+        {
+            "topic": "people",
+            "value": {
+                "id": { "_gen": "sequentialInteger" },
+                "name": { "_gen": "string", "expr": "#{Name.fullName}" },
+                "emailAddress": { "_gen": "string", "expr": "#{Internet.emailAddress}" },
+                "creditCard": { "_gen": "string", "expr": "#{Finance.creditCard}" },
+                "city": { "_gen": "string", "expr": "#{Address.cityName}" },
+                "state": { "_gen": "string", "expr": "#{Address.state}" },
+                "dateTime": {"_gen": "now"},
+                "extra": ""
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": { "_gen": "normalDistribution", "mean": 2000, "sd": 500 }
+                }
+            }
+        },
+        {
+            "topic": "auctions",
+            "vars": {
+                "now": { "_gen": "now" }
+            },
+            "value": {
+                "id": { "_gen": "sequentialInteger" },
+                "itemName": { "_gen": "string", "expr": "#{Commerce.productName}" },
+                "description": { "_gen": "string", "expr": "#{Lorem.sentence}" },
+                "initialBid": { "_gen": "uniformDistribution", "bounds": [0, 100], "decimals": 2 },
+                "reserve": { "_gen": "uniformDistribution", "bounds": [5, 25], "decimals": 2 },
+                "dateTime": { "_gen": "var", "var": "now" },
+                "expires": {
+                    "_gen": "add",
+                    "args": [
+                        { "_gen": "var", "var": "now" },
+                        { "_gen": "uniformDistribution", "bounds": [1800, 7200] }
+                    ]
+                },
+                "seller": {
+                    "_gen": "lookup",
+                    "topic": "people",
+                    "path": ["value", "name"]
+                },
+                "category": { "_gen": "uniformDistribution", "bounds": [1, 5], "decimals": 0 },
+                "extra": ""
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": { "_gen": "normalDistribution", "mean": 1000, "sd": 200 }
+                }
+            }
+        },
+        {
+            "topic": "bids",
+            "value": {
+                "auction": {
+                    "_gen": "lookup",
+                    "topic": "auctions",
+                    "path": ["value", "id"]
+                },
+                "bidder": {
+                    "_gen": "lookup",
+                    "topic": "people",
+                    "path": ["value", "id"]
+                },
+                "price": { "_gen": "uniformDistribution", "bounds": [0, 200], "decimals": 2 },
+                "channel": {
+                    "_gen": "oneOf",
+                    "choices": ["Google", "Facebook", "Baidu", "Apple"]
+                },
+                "url": { "_gen": "string", "expr": "#{Internet.url}" },
+                "dateTime": { "_gen": "now" },
+                "extra": ""
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": { "_gen": "normalDistribution", "mean": 500, "sd": 100 }
+                }
+            }
+        }
+    ],
+    "connections": {
+        "kafka": {
+            "kind": "kafka",
+            "producerConfigs": {
+                "bootstrap.servers": "localhost:9092",
+                "key.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer",
+                "value.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer"
+            }
+        }
+    }
+}
