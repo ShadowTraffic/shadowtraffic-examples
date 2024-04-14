@@ -54,7 +54,7 @@
                     "sd": 20
                 },
                 "description": { "_gen": "string", "expr": "#{Lorem.paragraph}" },
-                "timestamp": { "_gen": "now" },
+                "create_ts": { "_gen": "now" },
                 "creditCardNumber": { "_gen": "string", "expr": "#{Business.creditCardNumber}" },
                 "discountPercent": {
                     "_gen": "uniformDistribution",
