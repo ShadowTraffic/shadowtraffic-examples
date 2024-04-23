@@ -15,7 +15,8 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 
 **How it works:**
 
-- Writes data to [Kafka](https://docs.shadowtraffic.io/reference/connections/kafka/) using JSON serialization for both the key and value. The value is the output of [oneOf](https://docs.shadowtraffic.io/reference/generators/oneOf/), which picks one of three emojis at random.
+- Writes data to [Kafka](https://docs.shadowtraffic.io/reference/connections/kafka/) using JSON serialization for both the key and value.
+- The value is the output of [oneOf](https://docs.shadowtraffic.io/reference/generators/oneOf/), which picks one of three emojis at random.
 
 ---
 
@@ -26,7 +27,9 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 
 **How it works:**
 
-- One connection, `pg`, writes data to a single table with a single column. Auto creates the table for you if it doesn't exist.
+- Writes data to [Postgres](https://docs.shadowtraffic.io/reference/connections/postgres/) in the `testTable` table, which has one column `testColumn`.
+- ShadowTraffic will automatically create `testTable` if it doesn't yet exist.
+- `testColumn` the output of [oneOf](https://docs.shadowtraffic.io/reference/generators/oneOf/), which picks one of three emojis at random.
 
 ---
 
@@ -37,7 +40,9 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 
 **How it works:**
 
-- Writes objects to S3 with a jsonl file suffix, one line at a time.
+- Writes data to [S3](https://docs.shadowtraffic.io/reference/connections/s3/) using the `jsonl` file suffix.
+- You can control how frequently objects are written and their target size by changing the connection configuration.
+- `testBucket` must exist before you run ShadowTraffic. It doesn't pre-create buckets for you.
 
 ---
 
@@ -48,7 +53,8 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 
 **How it works:**
 
-- The generator gets shaped on `dataShape`.
+- Writes data to [a webhook](https://docs.shadowtraffic.io/reference/connections/webhook/) using the supplied HTTP strategy.
+- The shape of the generator is determined by the connection's `dataShape`. This decouples what kind of data you generate from the webhook: it can be key/value data, relational data, or anything else.
 
 ---
 
@@ -59,8 +65,8 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 
 **How it works:**
 
-- Pass through auth details in connection.
-- All data has to go through the value.
+- Writes data to [Decodable](https://docs.shadowtraffic.io/reference/connections/decodable/) using the supplied authentication information.
+- Decodable accepts a single map of data, defined by `value`.
 
 ---
 
