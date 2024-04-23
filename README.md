@@ -15,7 +15,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 
 **How it works:**
 
-- Foo
+- Writes data to [Kafka](https://docs.shadowtraffic.io/reference/connections/kafka/) using JSON serialization for both the key and value. The value is the output of [oneOf](https://docs.shadowtraffic.io/reference/generators/oneOf/), which picks one of three emojis at random.
 
 ---
 
@@ -26,7 +26,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 
 **How it works:**
 
-- Foo
+- One connection, `pg`, writes data to a single table with a single column. Auto creates the table for you if it doesn't exist.
 
 ---
 
@@ -37,7 +37,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 
 **How it works:**
 
-- Foo
+- Writes objects to S3 with a jsonl file suffix, one line at a time.
 
 ---
 
@@ -48,18 +48,19 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 
 **How it works:**
 
-- Foo
+- The generator gets shaped on `dataShape`.
 
 ---
 
 ### Hello world to Decodable
 
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fdecodable%2Fdevcontainer.json)
-[![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](hello-world-decodable.json)
+[![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](decodable.json)
 
 **How it works:**
 
-- Foo
+- Pass through auth details in connection.
+- All data has to go through the value.
 
 ---
 
