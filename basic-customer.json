@@ -8,14 +8,12 @@
                     "expr": "#{Name.full_name}"
                 },
                 "age": {
-                    "_gen": "integer",
-                    "n": {
-                        "_gen": "uniformDistribution",
-                        "bounds": [
-                            18,
-                            120
-                        ]
-                    }
+                    "_gen": "uniformDistribution",
+                    "bounds": [
+                        18,
+                        120
+                    ],
+                    "decimals": 0
                 },
                 "membership": {
                     "_gen": "oneOf",
