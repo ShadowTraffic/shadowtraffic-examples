@@ -171,7 +171,9 @@ In the last generator, events are generated to a Kafka topic called `supportTick
 
 **Discussion**
 
-- Foo
+This example generates data to two Kafka topics, `users` and `tweets`. In the `tweets` generator, `userId` is defined as a `lookup` to get user IDs that have been written to the `users` topic. But instead of randomly choosing previously generated user IDs, a `histogram` is used so that 20% of the user IDs will be chosen 80% of the time, and the remaining 80% of user IDs chosen 20% of the time.
+
+This distribution holds true event as more users are generated and the pool of user IDs becomes larger.
 
 ---
 
@@ -182,7 +184,7 @@ In the last generator, events are generated to a Kafka topic called `supportTick
 
 **Discussion**
 
-- Foo
+This example generates events to a Kafka topic with on an uneven cadence. A variable is set named `delay`, which is about `500` milliseconds with a standard deviation of `40` milliseconds. Each time an event is generator, `delay` is evaluated to a new number. `delay` is then referenced to impose a throttle, and the actual value of delay is passed into outgoing `row.`
 
 ---
 
@@ -193,7 +195,7 @@ In the last generator, events are generated to a Kafka topic called `supportTick
 
 **Discussion**
 
-- Foo
+By default, ShadowTraffic generates events indefinitely. But in this example, setting `events exactly` to a number bounds how many events are generated. When that limited is reached, ShadowTraffic stops.
 
 ---
 
@@ -204,7 +206,7 @@ In the last generator, events are generated to a Kafka topic called `supportTick
 
 **Discussion**
 
-- Foo
+In this example, we generate random timestamps between 24 hours into the past and 24 hours into the future—regardless of the current time. We do that by first setting a variable called `now` that captures the current wallclock time in milliseconds. Then, we create a uniformDistribution, who's lower value is now minus 24 hours and upper value is now plus 24 hours. We feed the result into `formatDateTime` to get a nice formatted string.
 
 ---
 
