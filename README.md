@@ -221,7 +221,7 @@ This example models different sensors whose previous reading influences its next
 
 First, each event has a `timestamp`, set in the row, that will be part of every generated event.
 
-Second, a `stateMachine` is used to model each sensor's readings over time. In the `start` state, each sensor's initial value is set to roughly `50.` In the `update` state, which it indefinitely stays in, the reading is set by adding the previous value with a random value between `-1` and `1`.
+Second, a [`stateMachine`](https://docs.shadowtraffic.io/reference/generators/stateMachine/) is used to model each sensor's readings over time. In the `start` state, each sensor's initial value is set to roughly `50.` In the `update` state, which it indefinitely stays in, the reading is set by adding the previous value with a random value between `-1` and `1`.
 
 Lastly, to model many sensors, and not just one, [`fork`](https://docs.shadowtraffic.io/overview/#forks) is used to spawn `5` simultaneous generators, each of which is spun up `250` milliseconds after the previous to make their updates stagger. A special variable called `forkKey` becomes available so that each generator can know what fork it represents—in this case, that means which sensor it is.
 
@@ -236,9 +236,9 @@ Lastly, to model many sensors, and not just one, [`fork`](https://docs.shadowtra
 
 This example generates data to a Kafka topic, but uses a few parameters to warp the data:
 
-1. `10%` of the data is delayed from being sent out by `200 - 800` milliseconds.
-2. `2%` of the data is completely discarded and never gets sent to the topic.
-3. `5%` of the data is repeated twice.
+1. `10%` of the data is [delayed](https://docs.shadowtraffic.io/reference/configuration/delay/) from being sent out by `200 - 800` milliseconds.
+2. `2%` of the data is completely [discarded](https://docs.shadowtraffic.io/reference/configuration/discard/) and never gets sent to the topic.
+3. `5%` of the data is [repeated](https://docs.shadowtraffic.io/reference/configuration/repeat/) twice.
 
 All of these parameters compose, so it's conceivable that an event is repeated, with one repetition getting delayed and another getting dropped.
 
@@ -277,7 +277,7 @@ In the first generator, 100 forks are created to mimic 100 different stores who 
 
 This example simulates events being written to a Postgres table. By contrast to other examples, this generator not only inserts rows, but also updates and deletes rows.
 
-This generator uses a state machine to track whether a row has been initial written, and whether it's eligible to be updated or deleted. By setting the `op` key on the generator, you can change whether the event should be treated as an insert, update, or delete.
+This generator uses a [state machine](https://docs.shadowtraffic.io/reference/generators/stateMachine/) to track whether a row has been initial written, and whether it's eligible to be updated or deleted. By setting the `op` key on the generator, you can change whether the event should be treated as an insert, update, or delete.
 
 This generator uses `varsOnce` to lock each users email so that it will never change.
 
@@ -320,7 +320,7 @@ By using `varsOnce`, each user is assigned a one-time IP address. But composing 
 
 This example simulates `30` individual JVMs reporting their metrics. [`fork`](https://docs.shadowtraffic.io/overview/#forks) is used to create the `30` instances, who's keys are defined by strings like `jvm-1`, `jvm-2`, etc through [`sequentialStrings`](https://docs.shadowtraffic.io/reference/generators/sequentialString/).
 
-A state machine is used to calculate its `heapSize` as its previous value plus a random number between `-1` and `1`.
+A [state machine](https://docs.shadowtraffic.io/reference/generators/stateMachine/) is used to calculate its `heapSize` as its previous value plus a random number between `-1` and `1`.
 
 ---
 
@@ -364,7 +364,7 @@ This example mimics a streaming version of the [New York City taxi data set](htt
 
 **Discussion**
 
-This example generates shopping cart events, some of which get cancelled and never check out. By supplying no transition for a state in the `transitions` key of the state machine, `CHECKED_OUT` and `CANCELLED` are treated as terminal states.
+This example generates shopping cart events, some of which get cancelled and never check out. By supplying no transition for a state in the `transitions` key of the [state machine](https://docs.shadowtraffic.io/reference/generators/stateMachine/), `CHECKED_OUT` and `CANCELLED` are treated as terminal states.
 
 ---
 
@@ -408,7 +408,7 @@ This example generates events to both Kafka and Postgres. Notice how [`lookup`](
 
 **Discussion**
 
-This example uses a state machine to simulate customers moving through different states on a website. Notice how in `transitions`, a `oneOf` generator can be used to dynamically pick the next state.
+This example uses a [state machine](https://docs.shadowtraffic.io/reference/generators/stateMachine/) to simulate customers moving through different states on a website. Notice how in `transitions`, a `oneOf` generator can be used to dynamically pick the next state.
 
 ---
 
@@ -419,7 +419,7 @@ This example uses a state machine to simulate customers moving through different
 
 **Discussion**
 
-This example models Debezium change data capture envelopes. It uses a state machine to track whether a row is inserted for the first time, updated, or deleted.
+This example models Debezium change data capture envelopes. It uses a [state machine](https://docs.shadowtraffic.io/reference/generators/stateMachine/) to track whether a row is inserted for the first time, updated, or deleted.
 
 It uses the `previousEvent` generator to access the last values and merge them into one so that each envelop has an entire snapshot of each row.
 
@@ -467,4 +467,4 @@ This example creates a [`fork`](https://docs.shadowtraffic.io/overview/#forks) p
 
 **Discussion**
 
-This example uses a state machine to weight the activity of a social media post. Most posts don't get much traffic; some a lot of traffic; others a lot of spam.
+This example uses a [state machine](https://docs.shadowtraffic.io/reference/generators/stateMachine/) to weight the activity of a social media post. Most posts don't get much traffic; some a lot of traffic; others a lot of spam.
