@@ -115,7 +115,13 @@ Second, `orderNumber` is defined by the `sequentialInteger` generator. This gene
 
 **Discussion**
 
-- Foo
+This example generators events to a Postgres table named `customers`. The table has three rows: `name`, `age`, and `membership`.
+
+`name` is a random full name, like John Smith.
+
+Age is a random number between 18 and 120. By default, `uniformDistribution` generates decimal numbers. With `decimals` set to `0`, the generator instead produces integers.
+
+`membership` is a random choice of three different levels.
 
 ---
 
