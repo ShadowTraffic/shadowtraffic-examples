@@ -14,19 +14,15 @@
                     "_gen": "now"
                 },
                 "followerCount": {
-                    "_gen": "integer",
-                    "n": {
-                        "_gen": "uniformDistribution",
-                        "bounds": [0, 2000]
-                    }
+                    "_gen": "uniformDistribution",
+                    "bounds": [0, 2000],
+                    "decimals": 0
                 },
                 "followingCount": {
-                    "_gen": "integer",
-                    "n": {
-                        "_gen": "normalDistribution",
-                        "mean": 500,
-                        "sd": 200
-                    }
+                    "_gen": "normalDistribution",
+                    "mean": 500,
+                    "sd": 200,
+                    "decimals": 0
                 }
             },
             "localConfigs": {

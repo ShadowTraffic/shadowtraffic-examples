@@ -14,11 +14,9 @@
                     "expr": "item_~d"
                 },
                 "quantity": {
-                    "_gen": "integer",
-                    "n": {
-                        "_gen": "uniformDistribution",
-                        "bounds": [1, 5]
-                    }
+                    "_gen": "uniformDistribution",
+                    "bounds": [1, 5],
+                    "decimals": 0
                 }
             },
             "localConfigs": {

@@ -8,60 +8,40 @@
             },
             "vars": {
                 "id1": {
-                    "_gen": "integer",
-                    "n": {
-                        "_gen": "uniformDistribution",
-                        "bounds": [1, { "_gen": "var", "var": "k" }]
-                    }
+                    "_gen": "uniformDistribution",
+                    "bounds": [1, { "_gen": "var", "var": "k" }],
+                    "decimals": 0
                 },
                 "id2": {
-                    "_gen": "integer",
-                    "n": {
-                        "_gen": "uniformDistribution",
-                        "bounds": [1, { "_gen": "var", "var": "k" }]
-                    }
+                    "_gen": "uniformDistribution",
+                    "bounds": [1, { "_gen": "var", "var": "k" }],
+                    "decimals": 0
                 },
                 "id3": {
-                    "_gen": "integer",
-                    "n": {
-                        "_gen": "uniformDistribution",
-                        "bounds": [1, {
-                            "_gen": "divide",
-                            "args": [{ "_gen": "var", "var": "n" }, { "_gen": "var", "var": "k" }]
-                        }]
-                    }
+                    "_gen": "uniformDistribution",
+                    "bounds": [1, {
+                        "_gen": "divide",
+                        "args": [{ "_gen": "var", "var": "n" }, { "_gen": "var", "var": "k" }]
+                    }],
+                    "decimals": 0
                 }
             },
             "row": {
                 "id1": { "_gen": "string", "expr": "id#{id1}" },
                 "id2": { "_gen": "string", "expr": "id#{id2}" },
                 "id3": { "_gen": "string", "expr": "id#{id3}" },
-                "id4": {
-                    "_gen": "integer",
-                    "n": { "_gen": "uniformDistribution", "bounds": [1, { "_gen": "var", "var": "k" }] }
-                },
-                "id5": {
-                    "_gen": "integer",
-                    "n": { "_gen": "uniformDistribution", "bounds": [1, { "_gen": "var", "var": "k" }] }
-                },
+                "id4": { "_gen": "uniformDistribution", "bounds": [1, { "_gen": "var", "var": "k" }], "decimals": 0 },
+                "id5": { "_gen": "uniformDistribution", "bounds": [1, { "_gen": "var", "var": "k" }], "decimals": 0 },
                 "id6": {
-                    "_gen": "integer",
-                    "n": {
-                        "_gen": "uniformDistribution",
-                        "bounds": [1, {
-                            "_gen": "divide",
-                            "args": [ { "_gen": "var", "var": "n" }, { "_gen": "var", "var": "k" } ]
-                        }]
-                    }
+                    "_gen": "uniformDistribution",
+                    "bounds": [1, {
+                        "_gen": "divide",
+                        "args": [ { "_gen": "var", "var": "n" }, { "_gen": "var", "var": "k" } ]
+                    }],
+                    "decimals": 0
                 },
-                "v1": {
-                    "_gen": "integer",
-                    "n": { "_gen": "uniformDistribution", "bounds": [1, 5] }
-                },
-                "v2": {
-                    "_gen": "integer",
-                    "n": { "_gen": "uniformDistribution", "bounds": [1, 15] }
-                },
+                "v1": { "_gen": "uniformDistribution", "bounds": [1, 5], "decimals": 0 },
+                "v2": { "_gen": "uniformDistribution", "bounds": [1, 15], "decimals": 0 },
                 "v3": { "_gen": "uniformDistribution", "bounds": [0, 100] }
             }
         }

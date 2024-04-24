@@ -72,47 +72,35 @@
                     "expr": "#{Lorem.sentence}"
                 },
                 "release_year": {
-                    "_gen": "integer",
-                    "n": {
-                        "_gen": "uniformDistribution",
-                        "bounds": [1900, 2023]
-                    }
+                    "_gen": "uniformDistribution",
+                    "bounds": [1900, 2023],
+                    "decimals": 0
                 },
                 "language_id": {
-                    "_gen": "integer",
-                    "n": {
-                        "_gen": "uniformDistribution",
-                        "bounds": [1, 10]
-                    }
+                    "_gen": "uniformDistribution",
+                    "bounds": [1, 10],
+                    "decimals": 0
                 },
                 "original_language_id": {
-                    "_gen": "integer",
-                    "n": {
-                        "_gen": "uniformDistribution",
-                        "bounds": [1, 10]
-                    }
+                    "_gen": "uniformDistribution",
+                    "bounds": [1, 10],
+                    "decimals": 0
                 },
                 "rental_duration": {
-                    "_gen": "integer",
-                    "n": {
-                        "_gen": "uniformDistribution",
-                        "bounds": [3, 10]
-                    }
+                    "_gen": "uniformDistribution",
+                    "bounds": [3, 10],
+                    "decimals": 0
                 },
                 "rental_rate": {
-                    "_gen": "integer",
-                    "n": {
-                        "_gen": "normalDistribution",
-                        "mean": 10,
-                        "sd": 3
-                    }
+                    "_gen": "normalDistribution",
+                    "mean": 10,
+                    "sd": 3,
+                    "decimals": 0
                 },
                 "length": {
-                    "_gen": "integer",
-                    "n": {
-                        "_gen": "uniformDistribution",
-                        "bounds": [60, 240]
-                    }
+                    "_gen": "uniformDistribution",
+                    "bounds": [60, 240],
+                    "decimals": 0
                 },
                 "replacement_cost": {
                     "_gen": "normalDistribution",
