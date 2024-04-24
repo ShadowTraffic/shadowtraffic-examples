@@ -353,7 +353,7 @@ This example uses two generators, with the second only being allowed to run ever
 
 **Discussion**
 
-- Foo
+This example mimics a streaming version of the [New York City taxi data set](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page). Most of the generator is simple, but the `total_amount` is a derived column that requires adding a bunch of other columns together.
 
 ---
 
@@ -364,7 +364,7 @@ This example uses two generators, with the second only being allowed to run ever
 
 **Discussion**
 
-- Foo
+This example generates shopping cart events, some of which get cancelled and never check out. By supplying no transition for a state in the `transitions` key of the state machine, `CHECKED_OUT` and `CANCELLED` are treated as terminal states.
 
 ---
 
@@ -375,7 +375,7 @@ This example uses two generators, with the second only being allowed to run ever
 
 **Discussion**
 
-- Foo
+This example generates data similar to the [Nexmark benchmark input data](https://github.com/nexmark/nexmark). Specifically, it's modeled after the Flink input example.
 
 ---
 
