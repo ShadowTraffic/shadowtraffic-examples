@@ -15,7 +15,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 
 **Discussion**
 
-This example writes events to a Kafka topic named `testTopic`, using JSON serialization for both the key and value. This generator doesn't specify a key, so the key of the record is always null. The value is a string, which is one of three random emojis.
+This example writes events to a [Kafka](https://docs.shadowtraffic.io/reference/connections/kafka/) topic named `testTopic`, using JSON serialization for both the key and value. This generator doesn't specify a key, so the key of the record is always null. The value is a string, which is [one of](https://docs.shadowtraffic.io/reference/generators/oneOf/) three random emojis.
 
 ---
 
@@ -26,7 +26,7 @@ This example writes events to a Kafka topic named `testTopic`, using JSON serial
 
 **Discussion**
 
-This example writes events to a Postgres table named `testTable`, which has one column named `testColumn`. If this table doesn't exist when you start ShadowTraffic, it'll automatically create it for you. `testColumn` is a string, and it's value will be one of three random emojis.
+This example writes events to a [Postgres](https://docs.shadowtraffic.io/reference/connections/postgres/) table named `testTable`, which has one column named `testColumn`. If this table doesn't exist when you start ShadowTraffic, it'll automatically create it for you. `testColumn` is a string, and it's value will be [one of](https://docs.shadowtraffic.io/reference/generators/oneOf/) three random emojis.
 
 ---
 
@@ -37,7 +37,7 @@ This example writes events to a Postgres table named `testTable`, which has one 
 
 **Discussion**
 
-This example writes events to an S3 bucket named `testBucket`. Each object in the bucket will have the file suffix `jsonl`, and each event will be one line of JSON. Events are strings, picked by the oneOf generator that chooses a random emoji.
+This example writes events to an [S3](https://docs.shadowtraffic.io/reference/connections/s3/) bucket named `testBucket`. Each object in the bucket will have the file suffix `jsonl`, and each event will be one line of JSON. Events are strings, picked by the [oneOf](https://docs.shadowtraffic.io/reference/generators/oneOf/) generator that chooses a random emoji.
 
 ---
 
@@ -48,7 +48,7 @@ This example writes events to an S3 bucket named `testBucket`. Each object in th
 
 **Discussion**
 
-This example writes events to the HTTP endpoint `https://my-site/webhook-endpoint`. The shape of the generator is determined by the connection's `dataShape`. Since it's set to `kafka`, the generator is expected to create key/value data. `dataShape` can be set to other values, which lets you decouple how your data is shaped from the webhook it's sent to.
+This example writes events to the [HTTP endpoint](https://docs.shadowtraffic.io/reference/connections/webhook/) `https://my-site/webhook-endpoint`. The shape of the generator is determined by the connection's `dataShape`. Since it's set to `kafka`, the generator is expected to create key/value data. `dataShape` can be set to other values, which lets you decouple how your data is shaped from the webhook it's sent to.
 
 ---
 
