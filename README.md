@@ -217,7 +217,13 @@ In this example, we generate random timestamps between 24 hours into the past an
 
 **Discussion**
 
-- Foo
+This example models different sensors whose previous reading influences its next reading. There are a few parts to this one.
+
+First, each event has a `timestamp`, set in the row, that will be part of every generated event.
+
+Second, a `stateMachine` is used to model each sensor's readings over time. In the `start` state, each sensor's initial value is set to roughly `50.` In the `update` state, which it indefinitely stays in, the reading is set by adding the previous value with a random value between `-1` and `1`.
+
+Lastly, to model many sensors, and not just one, `fork` is used to spawn `5` simultaneous generators, each of which is spun up `250` milliseconds after the previous to make their updates stagger. A special variable called `forkKey` becomes available so that each generator can know what fork it represents—in this case, that means which sensor it is.
 
 ---
 
@@ -228,7 +234,13 @@ In this example, we generate random timestamps between 24 hours into the past an
 
 **Discussion**
 
-- Foo
+This example generates data to a Kafka topic, but uses a few parameters to warp the data:
+
+1. `10%` of the data is delayed from being sent out by `200 - 800` milliseconds.
+2. `2%` of the data is completely discarded and never gets sent to the topic.
+3. `5%` of the data is repeated twice.
+
+All of these parameters compose, so it's conceivable that an event is repeated, with one repetition getting delayed and another getting dropped.
 
 ---
 
