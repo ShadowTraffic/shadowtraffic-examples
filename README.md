@@ -13,7 +13,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fhello-world-kafka%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](hello-world-kafka.json)
 
-**How it works:**
+**Discussion**
 
 - Writes data to [Kafka](https://docs.shadowtraffic.io/reference/connections/kafka/) using JSON serialization for both the key and value.
 - The value is the output of [oneOf](https://docs.shadowtraffic.io/reference/generators/oneOf/), which picks one of three emojis at random.
@@ -25,7 +25,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fhello-world-postgres%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](hello-world-postgres.json)
 
-**How it works:**
+**Discussion**
 
 - Writes data to [Postgres](https://docs.shadowtraffic.io/reference/connections/postgres/) in the `testTable` table, which has one column `testColumn`.
 - ShadowTraffic will automatically create `testTable` if it doesn't yet exist.
@@ -38,7 +38,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fhello-world-s3%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](hello-world-s3.json)
 
-**How it works:**
+**Discussion**
 
 - Writes data to [S3](https://docs.shadowtraffic.io/reference/connections/s3/) using the `jsonl` file suffix.
 - You can control how frequently objects are written and their target size by changing the connection configuration.
@@ -51,7 +51,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fhello-world-webhook%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](hello-world-webhook.json)
 
-**How it works:**
+**Discussion**
 
 - Writes data to [a webhook](https://docs.shadowtraffic.io/reference/connections/webhook/) using the supplied HTTP strategy.
 - The shape of the generator is determined by the connection's `dataShape`. This decouples what kind of data you generate from the webhook: it can be key/value data, relational data, or anything else.
@@ -63,7 +63,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fdecodable%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](decodable.json)
 
-**How it works:**
+**Discussion**
 
 - Writes data to [Decodable](https://docs.shadowtraffic.io/reference/connections/decodable/) using the supplied authentication information.
 - Decodable accepts a single map of data, defined by `value`.
@@ -75,7 +75,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fkafka-retail%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](kafka-retail.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -86,7 +86,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fpostgres-retail%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](postgres-retail.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -97,7 +97,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fs3-retail%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](s3-retail.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -108,7 +108,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fbasic-customer%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](basic-customer.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -119,7 +119,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fvotes%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](votes.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -130,7 +130,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Ftransactions%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](transactions.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -141,7 +141,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fcustomers-orders%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](customers-orders.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -152,7 +152,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fsupport-tickets%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](support-tickets.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -163,7 +163,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Ftweets%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](tweets.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -174,7 +174,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fthrottle%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](throttle.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -185,7 +185,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fexactly%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](exactly.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -196,7 +196,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Ftime%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](time.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -207,7 +207,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fsensors%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](sensors.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -218,7 +218,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Ftelemetry%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](telemetry.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -229,7 +229,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fh2o%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](h2o.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -240,7 +240,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fsakila%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](sakila.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -251,7 +251,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fip-rotation%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](ip-rotation.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -262,7 +262,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fddos%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](ddos.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -273,7 +273,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Ffraud%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](fraud.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -284,7 +284,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fheap-readings%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](heap-readings.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -295,7 +295,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Faudits%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](audits.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -306,7 +306,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Finventory-queries%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](inventory-queries.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -317,7 +317,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Ftaxi-rides%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](taxi-rides.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -328,7 +328,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fshopping-carts%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](shopping-carts.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -339,7 +339,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fnexmark%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](nexmark.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -350,7 +350,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Frepeat-users%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](repeat-users.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -361,7 +361,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fcross-connection%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](cross-connection.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -372,7 +372,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Ffunnel%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](funnel.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -383,7 +383,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fcdc%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](cdc.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -394,7 +394,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fcall-center%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](call-center.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -405,7 +405,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fflights%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](flights.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -416,7 +416,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fbets%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](bets.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
 
@@ -427,6 +427,6 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fbots%2Fdevcontainer.json)
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](bots.json)
 
-**How it works:**
+**Discussion**
 
 - Foo
