@@ -305,7 +305,9 @@ By setting `maxForks` to `50`, this generator will be spawn parallel instances a
 
 **Discussion**
 
-- Foo
+This example simulates that a small percentage of the time, a suspicious login happens, which is defined by a login with a new IP address.
+
+By using `varsOnce`, each user is assigned a one-time IP address. But composing that with `weightedOne`, 99% of the time that pre-determined IP address is chosen, and 1% of the time a new address is fabricated on the spot.
 
 ---
 
@@ -316,7 +318,9 @@ By setting `maxForks` to `50`, this generator will be spawn parallel instances a
 
 **Discussion**
 
-- Foo
+This example simulates `30` individual JVMs reporting their metrics. `fork` is used to create the `30` instances, who's keys are defined by strings like `jvm-1`, `jvm-2`, etc through `sequentialString`.
+
+A state machine is used to calculate its `heapSize` as its previous value plus a random number between `-1` and `1`.
 
 ---
 
@@ -327,7 +331,7 @@ By setting `maxForks` to `50`, this generator will be spawn parallel instances a
 
 **Discussion**
 
-- Foo
+This example uses statistical distributions with large numbers to simulate infrequently occurring events. In the `audits` generator, `auditDate` is set to `now` minus a number of days. In the `throttle`, a similar approach is used to make sure this generator doesn't run for a number of days after.
 
 ---
 
@@ -338,7 +342,7 @@ By setting `maxForks` to `50`, this generator will be spawn parallel instances a
 
 **Discussion**
 
-- Foo
+This example uses two generators, with the second only being allowed to run every `500` milliseconds according to its throttle value. `sequentialString` and `sequentialInteger` are used in the first generator to create stateful sequences of data.
 
 ---
 
