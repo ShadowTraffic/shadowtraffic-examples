@@ -386,7 +386,7 @@ This example generates data similar to the [Nexmark benchmark input data](https:
 
 **Discussion**
 
-- Foo
+This example does a self-lookup. When you do a self-lookup, you need to allow some percentage of the time to generate values, which is why there's a `weightedOneOf` generator. If there wasn't, ShadowTraffic could never generate an initial value, and there would be nothing to look up.
 
 ---
 
@@ -397,7 +397,7 @@ This example generates data similar to the [Nexmark benchmark input data](https:
 
 **Discussion**
 
-- Foo
+This example generates events to both Kafka and Postgres. Notice how `lookup` can work across connections. When you have multiple connections, you must specify which connection each generator should send data to, as denoted by the `connection` attribute.
 
 ---
 
@@ -408,7 +408,7 @@ This example generates data similar to the [Nexmark benchmark input data](https:
 
 **Discussion**
 
-- Foo
+This example uses a state machine to simulate customers moving through different states on a website. Notice how in `transitions`, a `oneOf` generator can be used to dynamically pick the next state.
 
 ---
 
@@ -419,7 +419,9 @@ This example generates data similar to the [Nexmark benchmark input data](https:
 
 **Discussion**
 
-- Foo
+This example models Debezium change data capture envelopes. It uses a state machine to track whether a row is inserted for the first time, updated, or deleted.
+
+It uses the `previousEvent` generator to access the last values and merge them into one so that each envelop has an entire snapshot of each row.
 
 ---
 
@@ -430,7 +432,9 @@ This example generates data similar to the [Nexmark benchmark input data](https:
 
 **Discussion**
 
-- Foo
+This example creates exactly 3 support agent events, and an indefinite number of call events.
+
+Notice how `calls` uses `fork` and a `lookup` for its key. In forks, `key` must be unique, so this has the effect that each agent can only field one call at a time. If two forks are spawned with the same key, the newer one will be stopped from launching.
 
 ---
 
@@ -441,7 +445,7 @@ This example generates data similar to the [Nexmark benchmark input data](https:
 
 **Discussion**
 
-- Foo
+This example simulates random flight paths between different geolocations. `geospatialScheme` computes the steps between two waypoints, and `geospatialPath` extracts the coordinates one at a time.
 
 ---
 
@@ -452,7 +456,7 @@ This example generates data similar to the [Nexmark benchmark input data](https:
 
 **Discussion**
 
-- Foo
+This example creates a `fork` per game, where each game moves through different states of completion. Each game is scheduled about `2000` milliseconds after the previous, with some jitter created by the `normalDistribution` generator.
 
 ---
 
@@ -463,4 +467,4 @@ This example generates data similar to the [Nexmark benchmark input data](https:
 
 **Discussion**
 
-- Foo
+This example uses a state machine to weight the activity of a social media post. Most posts don't get much traffic; some a lot of traffic; others a lot of spam.
