@@ -251,7 +251,7 @@ All of these parameters compose, so it's conceivable that an event is repeated, 
 
 **Discussion**
 
-- Foo
+This example generates streaming data to match the popular [h2o data set](https://taeinkwon.com/projects/h2o/). Nothing especially exotic about this one.
 
 ---
 
@@ -262,7 +262,9 @@ All of these parameters compose, so it's conceivable that an event is repeated, 
 
 **Discussion**
 
-- Foo
+This example generates data to mimic a subset of the [Sakila data set](https://dev.mysql.com/doc/sakila/en/).
+
+In the first generator, 100 forks are created to mimic 100 different stores who sell movies. The second generator, `inventory` does a `lookup` into each store ID and periodically modifies its available movies.
 
 ---
 
@@ -273,7 +275,13 @@ All of these parameters compose, so it's conceivable that an event is repeated, 
 
 **Discussion**
 
-- Foo
+This example simulates events being written to a Postgres table. By contrast to other examples, this generator not only inserts rows, but also updates and deletes rows.
+
+This generator uses a state machine to track whether a row has been initial written, and whether it's eligible to be updated or deleted. By setting the `op` key on the generator, you can change whether the event should be treated as an insert, update, or delete.
+
+This generator uses `varsOnce` to lock each users email so that it will never change.
+
+`stagger` is used in the `fork` section so that each new user will apparently come online every `250` milliseconds after the previous.
 
 ---
 
@@ -284,7 +292,9 @@ All of these parameters compose, so it's conceivable that an event is repeated, 
 
 **Discussion**
 
-- Foo
+This example simulates `50` machines sending packets to a Kafka topic.
+
+By setting `maxForks` to `50`, this generator will be spawn parallel instances and stop when it reaches `50`. To differentiate which machine is sending packets, `sourceIP` is set to the special variable `forKey`, which represents the currently running fork.
 
 ---
 
