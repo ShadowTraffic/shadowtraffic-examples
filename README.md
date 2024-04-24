@@ -52,17 +52,6 @@ This example writes events to the HTTP endpoint `https://my-site/webhook-endpoin
 
 ---
 
-### Hello world to Decodable
-
-[![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](decodable.json)
-[![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fdecodable%2Fdevcontainer.json)
-
-**Discussion**
-
-This example writes events to Decodable using the supplied authentication information. Decodable expects a single map of data for each event, which is defined by `value` in the generator.
-
----
-
 ### The kitchen sink: Kafka retail data
 
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](kafka-retail.json)
