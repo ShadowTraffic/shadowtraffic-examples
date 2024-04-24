@@ -15,8 +15,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 
 **Discussion**
 
-- Writes data to [Kafka](https://docs.shadowtraffic.io/reference/connections/kafka/) using JSON serialization for both the key and value.
-- The value is the output of [oneOf](https://docs.shadowtraffic.io/reference/generators/oneOf/), which picks one of three emojis at random.
+This example writes events to a Kafka topic named `testTopic`, using JSON serialization for both the key and value. This generator doesn't specify a key, so the key of the record is always null. The value is a string, which is one of three random emojis.
 
 ---
 
@@ -27,9 +26,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 
 **Discussion**
 
-- Writes data to [Postgres](https://docs.shadowtraffic.io/reference/connections/postgres/) in the `testTable` table, which has one column `testColumn`.
-- ShadowTraffic will automatically create `testTable` if it doesn't yet exist.
-- `testColumn` the output of [oneOf](https://docs.shadowtraffic.io/reference/generators/oneOf/), which picks one of three emojis at random.
+This example writes events to a Postgres table named `testTable`, which has one column named `testColumn`. If this table doesn't exist when you start ShadowTraffic, it'll automatically create it for you. `testColumn` is a string, and it's value will be one of three random emojis.
 
 ---
 
@@ -40,9 +37,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 
 **Discussion**
 
-- Writes data to [S3](https://docs.shadowtraffic.io/reference/connections/s3/) using the `jsonl` file suffix.
-- You can control how frequently objects are written and their target size by changing the connection configuration.
-- `testBucket` must exist before you run ShadowTraffic. It doesn't pre-create buckets for you.
+This example writes events to an S3 bucket named `testBucket`. Each object in the bucket will have the file suffix `jsonl`, and each event will be one line of JSON. Events are strings, picked by the oneOf generator that chooses a random emoji.
 
 ---
 
@@ -53,8 +48,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 
 **Discussion**
 
-- Writes data to [a webhook](https://docs.shadowtraffic.io/reference/connections/webhook/) using the supplied HTTP strategy.
-- The shape of the generator is determined by the connection's `dataShape`. This decouples what kind of data you generate from the webhook: it can be key/value data, relational data, or anything else.
+This example writes events to the HTTP endpoint `https://my-site/webhook-endpoint`. The shape of the generator is determined by the connection's `dataShape`. Since it's set to `kafka`, the generator is expected to create key/value data. `dataShape` can be set to other values, which lets you decouple how your data is shaped from the webhook it's sent to.
 
 ---
 
@@ -65,8 +59,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 
 **Discussion**
 
-- Writes data to [Decodable](https://docs.shadowtraffic.io/reference/connections/decodable/) using the supplied authentication information.
-- Decodable accepts a single map of data, defined by `value`.
+This example writes events to Decodable using the supplied authentication information. Decodable expects a single map of data for each event, which is defined by `value` in the generator.
 
 ---
 
