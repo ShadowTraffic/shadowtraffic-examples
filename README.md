@@ -121,7 +121,7 @@ Age is a random number between 18 and 120. By default, `uniformDistribution` gen
 
 **Discussion**
 
-- Foo
+This example writes to a Kafka topic, with each event having a UUID key and a map value. weightedOneOf sets 57% of all candidate strings in the value to `Fraklin Roosevelt` and 43% to  `Herbert Hoover`.
 
 ---
 
@@ -132,7 +132,7 @@ Age is a random number between 18 and 120. By default, `uniformDistribution` gen
 
 **Discussion**
 
-- Foo
+This example writes to a Kafka topic named `transactions`, with each event having a UUID key and a map value. The value maps contain two attributes: `price` and `timestamp`. `price` is a random number between `2` and `200`, and is guaranteed to have two decimal places. `time` is the current UNIX time in milliseconds.
 
 ---
 
@@ -143,7 +143,7 @@ Age is a random number between 18 and 120. By default, `uniformDistribution` gen
 
 **Discussion**
 
-- Foo
+This example writes to two Kafka topics, `customers` and `orders.` Events in `customers` have only a key and no value—thus, value will be `null`. Events in orders have a `customerId` which is guaranteed to have been successfully written to the `customers` topic first. The `lookup` generator targets those events and uses the `path` parameter to drill into the key's `name` attribute.
 
 ---
 
@@ -154,7 +154,13 @@ Age is a random number between 18 and 120. By default, `uniformDistribution` gen
 
 **Discussion**
 
-- Foo
+This example generates events to both Kafka and Postgres.
+
+In the first generator, straightforward events are generated to a Postgres table called `customers`. Note that because there are multiple connections, each generator has to explicitly define what connection it sends data to.
+
+In the second generator, events are generated to a Kafka topic called `purchases`. In the value of each event, `customerId` is defined as a `lookup` to values successfully written to the `customers` table. Notice how ShadowTraffic can support lookups across connection types.
+
+In the last generator, events are generated to a Kafka topic called `supportTickets`. This works much the same as the previous generator, but it also has a local configuration of `throttle` set. `throttle` allows this generator to only produce an event at most every `5000` milliseconds.
 
 ---
 

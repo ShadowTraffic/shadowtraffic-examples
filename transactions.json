@@ -11,7 +11,8 @@
                     "bounds": [
                         2,
                         200
-                    ]
+                    ],
+                    "decimals": 2
                 },
                 "timestamp": {
                     "_gen": "now"
