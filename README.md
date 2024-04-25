@@ -421,7 +421,10 @@ This example uses a [state machine](https://docs.shadowtraffic.io/reference/gene
 
 This example models Debezium change data capture envelopes. It uses a [state machine](https://docs.shadowtraffic.io/reference/generators/stateMachine/) to track whether a row is inserted for the first time, updated, or deleted.
 
-It uses the `previousEvent` generator to access the last values and merge them into one so that each envelop has an entire snapshot of each row.
+Debezium objects show you how an entire object has changed, in both before and after states, so simulating it requires remembering previously generated data. This example uses two ways to do that:
+
+1. The state machine is configured with `"merge": { "previous": true }` so that the previous event will be deep merged into the current.
+2. The `previousEvent` generator to accesses the last values and swaps the `before and `after` states.
 
 ---
 
@@ -467,4 +470,4 @@ This example creates a [`fork`](https://docs.shadowtraffic.io/overview/#forks) p
 
 **Discussion**
 
-This example uses a [state machine](https://docs.shadowtraffic.io/reference/generators/stateMachine/) to weight the activity of a social media post. Most posts don't get much traffic; some a lot of traffic; others a lot of spam.
+This example uses a [state machine](https://docs.shadowtraffic.io/reference/generators/stateMachine/) to weight the activity of a social media post. Most posts don't get much traffic; some a lot of traffic; others a lot of spam. This example uses `merge previous` to automatically merge in previous activity.

@@ -13,6 +13,7 @@
             "stateMachine": {
                 "_gen": "stateMachine",
                 "initial": "insert",
+                "merge": { "previous": true },
                 "transitions": {
                     "insert": {
                         "_gen": "weightedOneOf",
@@ -50,18 +51,12 @@
                             "payload": {
                                 "before": { "_gen": "previousEvent", "path": [ "value", "payload", "after" ] },
                                 "after": {
-                                    "_gen": "merge",
-                                    "objects": [
-                                        { "_gen": "previousEvent", "path": [ "value", "payload", "after" ] },
-                                        {
-                                            "_gen": "someKeys",
-                                            "object": {
-                                                "firstName": { "_gen": "string", "expr": "#{Name.first_name}" },
-                                                "lastName": { "_gen": "string", "expr": "#{Name.last_name}" },
-                                                "email": { "_gen": "string", "expr": "#{Internet.email_address}" }
-                                            }
-                                        }
-                                    ]
+                                    "_gen": "someKeys",
+                                    "object": {
+                                        "firstName": { "_gen": "string", "expr": "#{Name.first_name}" },
+                                        "lastName": { "_gen": "string", "expr": "#{Name.last_name}" },
+                                        "email": { "_gen": "string", "expr": "#{Internet.email_address}" }
+                                    }
                                 }
                             }
                         }

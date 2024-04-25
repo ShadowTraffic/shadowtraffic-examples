@@ -64,6 +64,7 @@
             "stateMachine": {
                 "_gen": "stateMachine",
                 "initial": "post",
+                "merge": { "previous": true },
                 "transitions": {
                     "post": {
                         "_gen": "weightedOneOf",
@@ -99,34 +100,22 @@
                     },
                     "like": {
                         "value": {
-                            "_gen": "merge",
-                            "objects": [
-                                { "_gen": "previousEvent", "path": [ "value" ] },
-                                {
-                                    "likes": {
-                                        "_gen": "add", "args": [
-                                            { "_gen": "previousEvent", "path": ["value", "likes"] },
-                                            1
-                                        ]
-                                    }
-                                }
-                            ]
+                            "likes": {
+                                "_gen": "add", "args": [
+                                    { "_gen": "previousEvent", "path": ["value", "likes"] },
+                                    1
+                                ]
+                            }
                         }
                     },
                     "share": {
                         "value": {
-                            "_gen": "merge",
-                            "objects": [
-                                { "_gen": "previousEvent", "path": [ "value" ] },
-                                {
-                                    "shares": {
-                                        "_gen": "add", "args": [
-                                            { "_gen": "previousEvent", "path": ["value", "shares"] },
-                                            1
-                                        ]
-                                    }
-                                }
-                            ]
+                            "shares": {
+                                "_gen": "add", "args": [
+                                    { "_gen": "previousEvent", "path": ["value", "shares"] },
+                                    1
+                                ]
+                            }
                         }
                     }
                 }
