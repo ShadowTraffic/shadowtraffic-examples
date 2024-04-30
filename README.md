@@ -9,40 +9,76 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 ```
 
 🧪 [Hello world with Kafka](#hello-world-with-kafka)
+
 🧪 [Hello world with Postgres](#hello-world-with-postgres)
+
 🧪 [Hello world with S3](#hello-world-with-s3)
+
 🧪 [Hello world with a webhook](#hello-world-with-a-webhook)
+
 🧪 [The kitchen sink: Kafka retail data](#the-kitchen-sink-kafka-retail-data)
+
 🧪 [The kitchen sink: Postgres retail data](#the-kitchen-sink-postgres-retail-data)
+
 🧪 [The kitchen sink: S3 retail data](#the-kitchen-sink-s3-retail-data)
+
 🧪 [Customers have a name, age, and membership level](#customers-have-a-name-age-and-membership-level)
+
 🧪 [57% of votes are cast for Franklin Roosevelt](#57-of-votes-are-cast-for-franklin-roosevelt)
+
 🧪 [Transactions are uniformly priced between $2 and $200](#transactions-are-uniformly-priced-between-2-and-200)
+
 🧪 [Orders have a pre-existing customer](#orders-have-a-pre-existing-customer)
+
 🧪 [Support ticket messages arrive every 5000ms](#support-ticket-messages-arrive-every-5000ms)
+
 🧪 [Publish 80% of the tweets from 20% of the users](#publish-80-of-the-tweets-from-20-of-the-users)
+
 🧪 [Send messages every 500 ms with a std dev of 40 ms](#send-messages-every-500-ms-with-a-std-dev-of-40-ms)
+
 🧪 [Place exactly 15 orders](#place-exactly-15-orders)
+
 🧪 [Pick a date/timestamp between yesterday and tomorrow](#pick-a-datetimestamp-between-yesterday-and-tomorrow)
+
 🧪 [5 sensors whose value is the previous value plus a random number between -1 and 1](#5-sensors-whose-value-is-the-previous-value-plus-a-random-number-between--1-and-1)
+
 🧪 [Telemetry data gets randomly delayed 10% of the time, discarded 2% of the time, and repeated 5% of the time](#telemetry-data-gets-randomly-delayed-10-of-the-time-discarded-2-of-the-time-and-repeated-5-of-the-time)
+
 🧪 [A stream of the h2o dataset configured for n=10M, k=10](#a-stream-of-the-h2o-dataset-configured-for-n10m-k10)
+
 🧪 [An inventory of films are tracked in 100 stores, like the Sakila dataset](#an-inventory-of-films-are-tracked-in-100-stores-like-the-sakila-dataset)
+
 🧪 [A new user comes online every 250ms and changes their IP every 1 second](#a-new-user-comes-online-every-250ms-and-changes-their-ip-every-1-second)
+
 🧪 [50 machines DDOSing EC2 instances in us-east-1 with ~200 byte packets every 10 ms](#50-machines-ddosing-ec2-instances-in-us-east-1-with-200-byte-packets-every-10-ms)
+
 🧪 [Suspicious accounts transacting that log in with a new IP address 1% of the time](#suspicious-accounts-transacting-that-log-in-with-a-new-ip-address-1-of-the-time)
+
 🧪 [30 JVMs report their heap readings every 250 ms which oscillate around 50 mb](#30-jvms-report-their-heap-readings-every-250-ms-which-oscillate-around-50-mb)
+
 🧪 [200 merchants have their businesses audited once every ~25 days](#200-merchants-have-their-businesses-audited-once-every-25-days)
+
 🧪 [Inventory is updated every 200ms and queries check its status every 500ms](#inventory-is-updated-every-200ms-and-queries-check-its-status-every-500ms)
+
 🧪 [A stream of rides from New York's yellow taxi network](#a-stream-of-rides-from-new-yorks-yellow-taxi-network)
+
 🧪 [Shopping carts add items, check out, and sometimes get abandoned](#shopping-carts-add-items-check-out-and-sometimes-get-abandoned)
+
 🧪 [The Nexmark streaming benchmark of auction streams](#the-nexmark-streaming-benchmark-of-auction-streams)
+
 🧪 [70% of all posts are from repeat users](#70-of-all-posts-are-from-repeat-users)
+
 🧪 [Harvest customer IDs from Postgres for Kafka events](#harvest-customer-ids-from-postgres-for-kafka-events)
+
 🧪 [Customers go through a 4-stage funnel](#customers-go-through-a-4-stage-funnel)
+
 🧪 [Debezium envelopes have 3 discrete states](#debezium-envelopes-have-3-discrete-states)
+
 🧪 [3 support agents field phone calls, arriving once a second](#3-support-agents-field-phone-calls-arriving-once-a-second)
+
 🧪 [Flights take off every 5 seconds and report their geolocation](#flights-take-off-every-5-seconds-and-report-their-geolocation)
+
+
 🧪 [Every ~2 seconds, a new game is scheduled to start with bets placed every ~500ms](#every-2-seconds-a-new-game-is-scheduled-to-start-with-bets-placed-every-500ms)
 🧪 [Bots post social content that get likes and shares only 5% of the time each](#bots-post-social-content-that-get-likes-and-shares-only-5-of-the-time-each)
 
