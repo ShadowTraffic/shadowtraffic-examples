@@ -487,7 +487,7 @@ Notice how `calls` uses [`fork`](https://docs.shadowtraffic.io/overview/#forks) 
 
 **Discussion**
 
-This example simulates random flight paths between different geolocations. `geospatialScheme` computes the steps between two waypoints, and `geospatialPath` extracts the coordinates one at a time.
+This example simulates random flight paths between different geolocations. [`waypoints`](https://docs.shadowtraffic.io/functions/waypoints/) computes the steps between the coordinates, and repeated calls serve them up one at a time.
 
 ---
 

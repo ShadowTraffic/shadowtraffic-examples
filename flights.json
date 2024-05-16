@@ -72,62 +72,41 @@
                         [34.914547, -92.142914],
                         [29.080168, -81.046669],
                         [33.975777, -83.963097]]
-                },
-                "scheme": {
-                    "_gen": "geospatialPathScheme",
-                    "src": {"_gen": "var", "var": "src"},
-                    "dst": {"_gen": "var", "var": "dst"},
-                    "speed": 500,
-                    "scale": 0.025
                 }
             },
             "vars": {
-                "location": {
-                    "_gen": "geospatialPath",
-                    "src": { "_gen": "var", "var": "src" },
-                    "dst": { "_gen": "var", "var": "dst" },
-                    "stepSize": {
-                        "_gen": "var",
-                        "var": "scheme",
-                        "path": [ "stepSize" ]
-                    }
-                },
-                "flightMs": {
-                    "_gen": "multiply",
-                    "args": [
-                        3600000,
-                        {
-                            "_gen": "var",
-                            "var": "scheme",
-                            "path": [ "time" ]
-                        }
-                    ]
+                "step": {
+                    "_gen": "waypoints",
+                    "waypoints": [
+                        { "coordinates": { "_gen": "var", "var": "src" } },
+                        { "coordinates": { "_gen": "var", "var": "dst" } } 
+                    ],
+                    "speed": 500,
+                    "scale": 0.025
                 }
             },
             "value": {
                 "FlightId": {"_gen": "var", "var": "forkKey"},
                 "Latitude": {
                     "_gen": "var",
-                    "var": "location",
+                    "var": "step",
                     "path": ["latitude"]
                 },
                 "Longitude": {
                     "_gen": "var",
-                    "var": "location",
+                    "var": "step",
                     "path": ["longitude"]
                 }
             },
             "localConfigs": {
                 "throttle": {
                     "ms": {
-                        "_gen": "divide",
-                        "args": [
-                            {"_gen": "var", "var": "flightMs"},
-                            {"_gen": "var", "var": "scheme", "path": [ "points" ]}
-                        ]
+                        "_gen": "var",
+                        "var": "step",
+                        "path": ["duration"]
                     }
                 },
-                "events": {"exactly": {"_gen": "var", "var": "scheme", "path": [ "points" ]}}
+                "events": {"exactly": {"_gen": "var", "var": "step", "path": [ "points" ]}}
             }
         }
     ],
