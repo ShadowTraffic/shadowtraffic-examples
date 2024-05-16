@@ -1,0 +1,12 @@
+{
+    "name": "latency-readings",
+    "image": "shadowtraffic/shadowtraffic:latest",
+    "postAttachCommand": "source free-trial-license.env && java -jar /home/shadowtraffic.jar --config /workspaces/shadowtraffic-examples/latency-readings.json --sample 10 --stdout --watch",
+    "customizations": {
+        "codespaces": {
+            "openFiles": [
+                "latency-readings.json"
+            ]
+        }
+    }
+}

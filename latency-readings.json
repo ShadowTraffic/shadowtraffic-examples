@@ -1,0 +1,36 @@
+{
+    "generators": [
+        {
+            "topic": "latencyReadings",
+            "value": {
+                "latency": {
+                    "_gen": "intervals",
+                    "intervals": [
+                        [ "*/5 * * * *", { "_gen": "normalDistribution", "mean": 150, "sd": 3 } ],
+                        [ "*/2 * * * *", { "_gen": "normalDistribution", "mean": 50, "sd": 2 } ]
+                    ],
+                    "defaultValue": {
+                        "_gen": "normalDistribution",
+                        "mean": 10,
+                        "sd": 1
+                    }
+                }
+            },
+            "localConfigs": {
+                "throttle": {
+                    "ms": 1000
+                }
+            }
+        }
+    ],
+    "connections": {
+        "dev-kafka": {
+            "kind": "kafka",
+            "producerConfigs": {
+                "bootstrap.servers": "localhost:9092",
+                "key.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer",
+                "value.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer"
+            }
+        }
+    }
+}
