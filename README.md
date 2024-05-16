@@ -519,4 +519,4 @@ This example uses a [state machine](https://docs.shadowtraffic.io/functions/stat
 **Discussion**
 
 
-This example uses the [`intervals`](https://docs.shadowtraffic.io/functions/intervals/) function to change how the generator behaves over time. When the wallclock time reaches the 5th minute, the latency shifts from 10 to 150. When it reaches the 2nd minute, it shifts to 50. Notice how some wallclock values, like 10:20 AM, are divisible by both 5 and 2. `intervals` is evaluated in priority order, so in this case the burst to 150 takes priority.
+This example uses the [`intervals`](https://docs.shadowtraffic.io/functions/intervals/) function to change how the generator behaves over time. When the wallclock time reaches the 5th minute, the latency shifts from 10 to 150. When it reaches the 2nd minute, it shifts to 50. Notice how some wallclock values, like 10:20 AM, are divisible by both 5 and 2. `intervals` is evaluated in priority order, so in this case the burst to 150 takes priority because it's listed first.
