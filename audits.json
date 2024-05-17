@@ -25,9 +25,7 @@
                         "bounds": [500, 2000]
                     }
                 },
-                "events": {
-                    "exactly": 200
-                }
+                "maxEvents": 200
             }
         },
         {

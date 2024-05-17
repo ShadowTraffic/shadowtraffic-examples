@@ -3,7 +3,7 @@
         {
             "topic": "agents",
             "value": {"id": {"_gen": "sequentialInteger" }},
-            "localConfigs": {"events": {"exactly": 3}}
+            "localConfigs": {"maxEvents": 3}
         },
         {
             "topic": "calls",
@@ -34,7 +34,7 @@
             },
             "localConfigs": {
                 "throttle": {"ms": {"_gen": "var", "var": "duration"}},
-                "events": { "exactly": 2 }
+                "maxEvents": 2
             }
         }
     ],

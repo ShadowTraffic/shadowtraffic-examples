@@ -106,7 +106,7 @@
                         "path": ["duration"]
                     }
                 },
-                "events": {"exactly": {"_gen": "var", "var": "step", "path": [ "points" ]}}
+                "maxEvents": {"_gen": "var", "var": "step", "path": [ "points" ]}
             }
         }
     ],

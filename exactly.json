@@ -15,9 +15,7 @@
 		}
             },
             "localConfigs": {
-                "events": {
-                    "exactly": 15
-                }
+                "maxEvents": 15
             }
         }
     ],

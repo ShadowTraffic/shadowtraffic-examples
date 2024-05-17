@@ -234,7 +234,7 @@ This example generates events to a Kafka topic with on an uneven cadence. A vari
 
 **Discussion**
 
-By default, ShadowTraffic generates events indefinitely. But in this example, setting `events exactly` to a number bounds how many events are generated. When that limited is reached, ShadowTraffic stops.
+By default, ShadowTraffic generates events indefinitely. But in this example, setting `maxEvents` to a number bounds how many events are generated. When that limited is reached, ShadowTraffic stops.
 
 ---
 
