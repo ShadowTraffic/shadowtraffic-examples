@@ -20,12 +20,10 @@
                 }
             },
             "localConfigs": {
-                "throttle": {
-                    "ms": {
-                        "_gen": "normalDistribution",
-                        "mean": 200,
-                        "sd": 50
-                    }
+                "throttleMs": {
+                    "_gen": "normalDistribution",
+                    "mean": 200,
+                    "sd": 50
                 }
             }
         },
@@ -45,9 +43,7 @@
                 }
             },
             "localConfigs": {
-                "throttle": {
-                    "ms": 500
-                }
+                "throttleMs": 500
             }
         }
     ],

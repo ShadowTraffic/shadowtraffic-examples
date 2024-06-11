@@ -47,11 +47,9 @@
                 }
             },
             "localConfigs": {
-                "throttle": {
-                    "ms": {
-                        "_gen": "uniformDistribution",
-                        "bounds": [500, 5000]
-                    }
+                "throttleMs": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [500, 5000]
                 }
             }
         },
@@ -77,12 +75,9 @@
                 }
             },
             "localConfigs": {
-                "throttle": {
-                    "ms": {
-                        "_gen": "uniformDistribution",
-                        "bounds": [200, 600]
-                    }
-
+                "throttleMs": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [200, 600]
                 }
             }
         }

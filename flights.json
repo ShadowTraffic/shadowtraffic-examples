@@ -99,12 +99,10 @@
                 }
             },
             "localConfigs": {
-                "throttle": {
-                    "ms": {
-                        "_gen": "var",
-                        "var": "step",
-                        "path": ["duration"]
-                    }
+                "throttleMs": {
+                    "_gen": "var",
+                    "var": "step",
+                    "path": ["duration"]
                 },
                 "maxEvents": {"_gen": "var", "var": "step", "path": [ "points" ]}
             }

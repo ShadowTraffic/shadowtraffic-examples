@@ -74,7 +74,7 @@
                 }
             },
             "localConfigs": {
-                "throttle": { "ms": 250 }
+                "throttleMs": 250
             }
         }
     ],

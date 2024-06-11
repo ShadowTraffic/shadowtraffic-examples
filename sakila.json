@@ -24,9 +24,7 @@
                 }
             },
             "localConfigs": {
-                "throttle": {
-                    "ms": 1000
-                }
+                "throttleMs": 1000
             }
         },
         {
@@ -52,9 +50,7 @@
                 }
             },
             "localConfigs": {
-                "throttle": {
-                    "ms": 200
-                }
+                "throttleMs": 200
             }
         },
         {

@@ -199,7 +199,7 @@ In the first generator, straightforward events are generated to a Postgres table
 
 In the second generator, events are generated to a Kafka topic called `purchases`. In the value of each event, `customerId` is defined as a [`lookup`](https://docs.shadowtraffic.io/functions/lookup/) to values successfully written to the `customers` table. Notice how ShadowTraffic can support lookups across connection types.
 
-In the last generator, events are generated to a Kafka topic called `supportTickets`. This works much the same as the previous generator, but it also has a local configuration of `throttle` set. `throttle` allows this generator to only produce an event at most every `5000` milliseconds.
+In the last generator, events are generated to a Kafka topic called `supportTickets`. This works much the same as the previous generator, but it also has a local configuration of `throttleMs` set. `throttleMs` allows this generator to only produce an event at most every `5000` milliseconds.
 
 ---
 
@@ -370,7 +370,7 @@ A [state machine](https://docs.shadowtraffic.io/functions/stateMachine/) is used
 
 **Discussion**
 
-This example uses statistical distributions with large numbers to simulate infrequently occurring events. In the `audits` generator, `auditDate` is set to `now` minus a number of days. In the `throttle`, a similar approach is used to make sure this generator doesn't run for a number of days after.
+This example uses statistical distributions with large numbers to simulate infrequently occurring events. In the `audits` generator, `auditDate` is set to `now` minus a number of days. In the `throttleMs`, a similar approach is used to make sure this generator doesn't run for a number of days after.
 
 ---
 

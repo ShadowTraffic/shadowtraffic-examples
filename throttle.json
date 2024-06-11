@@ -20,11 +20,9 @@
                 }
             },
             "localConfigs": {
-                "throttle": {
-                    "ms": {
-                        "_gen": "var",
-                        "var": "delay"
-                    }
+                "throttleMs": {
+                    "_gen": "var",
+                    "var": "delay"
                 }
             }
         }       

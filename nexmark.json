@@ -13,9 +13,7 @@
                 "extra": ""
             },
             "localConfigs": {
-                "throttle": {
-                    "ms": { "_gen": "normalDistribution", "mean": 2000, "sd": 500 }
-                }
+                "throttleMs": { "_gen": "normalDistribution", "mean": 2000, "sd": 500 }
             }
         },
         {
@@ -46,9 +44,7 @@
                 "extra": ""
             },
             "localConfigs": {
-                "throttle": {
-                    "ms": { "_gen": "normalDistribution", "mean": 1000, "sd": 200 }
-                }
+                "throttleMs": { "_gen": "normalDistribution", "mean": 1000, "sd": 200 }
             }
         },
         {
@@ -74,9 +70,7 @@
                 "extra": ""
             },
             "localConfigs": {
-                "throttle": {
-                    "ms": { "_gen": "normalDistribution", "mean": 500, "sd": 100 }
-                }
+                "throttleMs": { "_gen": "normalDistribution", "mean": 500, "sd": 100 }
             }
         }
     ],

@@ -33,7 +33,7 @@
                 }
             },
             "localConfigs": {
-                "throttle": {"ms": {"_gen": "var", "var": "duration"}},
+                "throttleMs": {"_gen": "var", "var": "duration"},
                 "maxEvents": 2
             }
         }
