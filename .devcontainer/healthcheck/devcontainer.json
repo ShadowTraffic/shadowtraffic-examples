@@ -1,0 +1,12 @@
+{
+    "name": "healthcheck",
+    "image": "shadowtraffic/shadowtraffic:latest",
+    "postAttachCommand": "source free-trial-license.env && java -jar /home/shadowtraffic.jar --config /workspaces/shadowtraffic-examples/healthcheck.json --sample 10 --stdout --watch",
+    "customizations": {
+        "codespaces": {
+            "openFiles": [
+                "healthcheck.json"
+            ]
+        }
+    }
+}

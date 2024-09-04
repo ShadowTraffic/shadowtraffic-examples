@@ -1,0 +1,53 @@
+{
+    "generators": [
+        {
+            "table": "serverStatus",
+            "row": {
+                "server0": {
+                    "_gen": "stateMachine",
+                    "initial": "ok",
+                    "transitions": {
+                        "ok": {
+                            "_gen": "weightedOneOf",
+                            "choices": [{"value": "ok", "weight": 20}, {"value": "warn", "weight": 2}, {"value": "bad", "weight": 2}]
+                        },
+                        "warn": {
+                            "_gen": "weightedOneOf",
+                            "choices": [{"value": "ok", "weight": 5}, {"value": "warn", "weight": 15}, {"value": "bad", "weight": 2}]
+                        },
+                        "bad": {
+                            "_gen": "weightedOneOf",
+                            "choices": [{"value": "ok", "weight": 1}, {"value": "warn", "weight": 3}, {"value": "bad", "weight": 15}]
+                        }
+                    },
+                    "states": {
+                        "ok": "OK",
+                        "warn": "WARN",
+                        "bad": "BAD"
+                    },
+                    "pgHint": "text"
+                },
+                "timestamp": {
+                    "_gen": "toInstant",
+                    "ms": { "_gen": "now" }
+                }
+            },
+            "localConfigs": {
+                "throttle": { "ms": 15000 }
+            }
+        }
+    ],
+    "connections": {
+        "pg": {
+            "kind": "postgres",
+            "tablePolicy": "dropAndCreate",
+            "connectionConfigs": {
+                "host": "localhost",
+                "port": 5432,
+                "username": "postgres",
+                "password": "postgres",
+                "db": "mydb"
+            }
+        }
+    }
+}
