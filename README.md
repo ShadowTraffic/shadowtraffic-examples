@@ -46,7 +46,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 * [Every ~2 seconds, a new game is scheduled to start with bets placed every ~500ms](#every-2-seconds-a-new-game-is-scheduled-to-start-with-bets-placed-every-500ms)
 * [Bots post social content that get likes and shares only 5% of the time each](#bots-post-social-content-that-get-likes-and-shares-only-5-of-the-time-each)
 * [Latency is about 10 milliseconds, with bursts to 50 and 150 every 2 and 5 minutes](#latency-is-about-10-milliseconds-with-bursts-to-50-and-150-every-2-and-5-minutes)
-* [A server transitions a between healthcheck statuses every 15 seconds](#a-server-transitions-between-healthcheck-statuses-every-15-seconds)
+* [A server transitions between healthcheck statuses every 15 seconds](#a-server-transitions-between-healthcheck-statuses-every-15-seconds)
 
 ### Hello world with Kafka
 
@@ -521,7 +521,7 @@ This example uses a [state machine](https://docs.shadowtraffic.io/functions/stat
 
 This example uses the [`intervals`](https://docs.shadowtraffic.io/functions/intervals/) function to change how the generator behaves over time. When the wallclock time reaches the 5th minute, the latency shifts from 10 to 150. When it reaches the 2nd minute, it shifts to 50. Notice how some wallclock values, like 10:20 AM, are divisible by both 5 and 2. `intervals` is evaluated in priority order, so in this case the burst to 150 takes priority because it's listed first.
 
-### A server transitions a between healthcheck statuses every 15 seconds
+### A server transitions between healthcheck statuses every 15 seconds
 
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](healthcheck.json)
 [![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fhealthcheck%2Fdevcontainer.json)
