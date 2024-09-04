@@ -512,6 +512,8 @@ This example creates a [`fork`](https://docs.shadowtraffic.io/overview/#forks) p
 
 This example uses a [state machine](https://docs.shadowtraffic.io/functions/stateMachine/) to weight the activity of a social media post. Most posts don't get much traffic; some a lot of traffic; others a lot of spam. This example uses `merge previous` to automatically merge in previous activity.
 
+---
+
 ### Latency is about 10 milliseconds, with bursts to 50 and 150 every 2 and 5 minutes
 
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](latency-readings.json)
@@ -520,6 +522,8 @@ This example uses a [state machine](https://docs.shadowtraffic.io/functions/stat
 **Discussion**
 
 This example uses the [`intervals`](https://docs.shadowtraffic.io/functions/intervals/) function to change how the generator behaves over time. When the wallclock time reaches the 5th minute, the latency shifts from 10 to 150. When it reaches the 2nd minute, it shifts to 50. Notice how some wallclock values, like 10:20 AM, are divisible by both 5 and 2. `intervals` is evaluated in priority order, so in this case the burst to 150 takes priority because it's listed first.
+
+---
 
 ### A server transitions between healthcheck statuses every 15 seconds
 
