@@ -88,7 +88,7 @@ This example writes events to an [S3](https://docs.shadowtraffic.io/connections/
 
 **Discussion**
 
-This example writes events to the [HTTP endpoint](https://docs.shadowtraffic.io/connections/webhook/) `https://my-site/webhook-endpoint`. The shape of the generator is determined by the connection's `dataShape`. Since it's set to `kafka`, the generator is expected to create key/value data. `dataShape` can be set to other values, which lets you decouple how your data is shaped from the webhook it's sent to.
+This example writes events to the [HTTP endpoint](https://docs.shadowtraffic.io/connections/webhook/) `https://my-site/webhook-endpoint`. Not much commentary needed!
 
 ---
 

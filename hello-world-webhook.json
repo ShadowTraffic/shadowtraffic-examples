@@ -1,8 +1,8 @@
 {
     "generators": [
         {
-            "topic": "testTopic",
-            "value": {
+            "url": "https://my-site/webhook-endpoint",
+            "data": {
                 "_gen": "oneOf",
                 "choices": [
                     "👍", "🔥", "❤️"
@@ -12,11 +12,7 @@
     ],
     "connections": {
         "saas-webhook": {
-            "kind": "webhook",
-            "dataShape": "kafka",
-            "httpConfigs": {
-                "url": "https://my-site/webhook-endpoint"
-            }
+            "kind": "webhook"
         }
     }
 }
