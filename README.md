@@ -464,7 +464,7 @@ This example models Debezium change data capture envelopes. It uses a [state mac
 Debezium objects show you how an entire object has changed, in both before and after states, so simulating it requires remembering previously generated data. This example uses two ways to do that:
 
 1. The state machine is configured with `"merge": { "previous": true }` so that the previous event will be deep merged into the current.
-2. The `previousEvent` generator to accesses the last values and swaps the `before and `after` states.
+2. The `previousEvent` generator to accesses the last values and swaps the `before` and `after` states.
 
 ---
 
