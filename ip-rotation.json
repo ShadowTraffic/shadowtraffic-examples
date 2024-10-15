@@ -13,7 +13,7 @@
                 }
             },
             "row": {
-                "id": { "_gen": "var", "var": "forkKey" },
+                "id": { "_gen": "var", "var": "forkKey", "pgHint": "uuid" },
                 "emailAddress": { "_gen": "var", "var": "emailAddress" },
                 "lastKnownIp": {
                     "_gen": "string",
