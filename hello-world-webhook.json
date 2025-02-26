@@ -2,11 +2,24 @@
     "generators": [
         {
             "url": "https://my-site/webhook-endpoint",
+            "method": "POST",
+            "headers": { "ORIGIN": "US-EAST-2" },
+            "queryParams": {
+                "foo": "bar",
+                "baz": "bip"
+            },
             "data": {
-                "_gen": "oneOf",
-                "choices": [
-                    "👍", "🔥", "❤️"
-                ]
+                "magicNumber": {
+                    "_gen": "normalDistribution",
+                    "mean": 100,
+                    "sd": 10
+                },
+                "magicString": {
+                    "_gen": "oneOf",
+                    "choices": [
+                        "👍", "🔥", "❤️"
+                    ]
+                }
             }
         }
     ],
