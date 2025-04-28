@@ -28,8 +28,11 @@
                     "pgHint": "text"
                 },
                 "timestamp": {
-                    "_gen": "toInstant",
-                    "ms": { "_gen": "now" }
+                    "_gen": "now",
+                    "pgHint": "timestamp",
+                    "serialize": {
+                        "type": "postgresTimestamp"
+                    }
                 }
             },
             "localConfigs": {

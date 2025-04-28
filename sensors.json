@@ -15,9 +15,9 @@
                     "_gen": "var", "var": "forkKey"
                 },
                 "timestamp": {
-                    "_gen": "toInstant",
-                    "ms": {
-                        "_gen": "now"
+                    "_gen": "now",
+                    "serialize": {
+                        "type": "postgresTimestamp"
                     }
                 }
             },
