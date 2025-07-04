@@ -35,7 +35,7 @@
                 "customerId": {
                     "_gen": "lookup",
                     "table": "customers",
-                    "path": ["customerId"]
+                    "path": ["row", "customerId"]
                 },
                 "orderNumber": {
                     "_gen": "sequentialInteger"
