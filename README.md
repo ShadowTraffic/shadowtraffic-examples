@@ -533,3 +533,12 @@ This example uses the [`intervals`](https://docs.shadowtraffic.io/functions/inte
 **Discussion**
 
 This example uses a [state machine](https://docs.shadowtraffic.io/functions/stateMachine/) to weight the probability of a server transitioning from ok, to warn, to bad. The next status mostly resembles the previous one.
+
+### A client emits OTEL telemetry data
+
+[![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](otel.json)
+[![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fotel%2Fdevcontainer.json)
+
+**Discussion**
+
+A reference implementation to generate minimal Open Telemetry events.

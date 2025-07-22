@@ -1,0 +1,81 @@
+{
+    "generators": [
+        {
+            "topic": "otel",
+            "value": {
+                "traceId": {
+                    "_gen": "uuid"
+                },
+                "spanId": {
+                    "_gen": "uuid"
+                },
+                "parentSpanId": {
+                    "_gen": "uuid"
+                },
+                "name": {
+                    "_gen": "string",
+                    "expr": "#{App.name}"
+                },
+                "startTimeUnixNano": {
+                    "_gen": "now"
+                },
+                "endTimeUnixNano": {
+                    "_gen": "add",
+                    "args": [
+                        { "_gen": "now" },
+                        { "_gen": "uniformDistribution", "bounds": [100, 5000] }
+                    ]
+                },
+                "status": {
+                    "_gen": "oneOf",
+                    "choices": ["OK", "ERROR", "UNSET"]
+                },
+                "attributes": {
+                    "http.method": {
+                        "_gen": "oneOf",
+                        "choices": ["GET", "POST", "PUT", "DELETE"]
+                    },
+                    "http.status_code": {
+                        "_gen": "weightedOneOf",
+                        "choices": [
+                            {
+                                "weight": 95,
+                                "value": 200
+                            },
+                            {
+                                "weight": 1,
+                                "value": 201
+                            },
+                            {
+                                "weight": 1,
+                                "value": 400
+                            },
+                            {
+                                "weight": 2,
+                                "value": 404
+                            },
+                            {
+                                "weight": 1,
+                                "value": 500
+                            }
+                        ]
+                    },
+                    "service.name": {
+                        "_gen": "string",
+                        "expr": "#{App.name}"
+                    }
+                }
+            }
+        }
+    ],
+    "connections": {
+        "dev-kafka": {
+            "kind": "kafka",
+            "producerConfigs": {
+                "bootstrap.servers": "localhost:9092",
+                "key.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer",
+                "value.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer"
+            }
+        }
+    }
+}
