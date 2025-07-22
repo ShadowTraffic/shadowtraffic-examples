@@ -47,6 +47,8 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 * [Bots post social content that get likes and shares only 5% of the time each](#bots-post-social-content-that-get-likes-and-shares-only-5-of-the-time-each)
 * [Latency is about 10 milliseconds, with bursts to 50 and 150 every 2 and 5 minutes](#latency-is-about-10-milliseconds-with-bursts-to-50-and-150-every-2-and-5-minutes)
 * [A server transitions between healthcheck statuses every 15 seconds](#a-server-transitions-between-healthcheck-statuses-every-15-seconds)
+* [A client emits OTEL telemetry data](#a-client-emits-otel-telemetry-data)
+### 
 
 ### Hello world with Kafka
 
