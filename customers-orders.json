@@ -5,7 +5,7 @@
             "key": {
                 "name": {
                     "_gen": "string",
-                    "expr": "#{Name.full_name}"
+                    "expr": "#{Name.fullName}"
                 }
             }
         },

@@ -10,7 +10,7 @@
                 },
                 "address": {
                     "_gen": "string",
-                    "expr": "#{Address.full_address}"
+                    "expr": "#{Address.fullAddress}"
                 }
             }
         },
