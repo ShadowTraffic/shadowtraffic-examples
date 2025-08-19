@@ -31,11 +31,11 @@
                 },
                 "product": {
                     "_gen": "string",
-                    "expr": "#{Commerce.product_name}"
+                    "expr": "#{Commerce.productName}"
                 },
                 "creditCard": {
                     "_gen": "string",
-                    "expr": "#{Finance.credit_card}"
+                    "expr": "#{Finance.creditCard}"
                 }
             }
         },
