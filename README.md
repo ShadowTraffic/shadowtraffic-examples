@@ -48,6 +48,7 @@ docker run --env-file license.env -v $(pwd)/<configuration file>:/home/config.js
 * [Latency is about 10 milliseconds, with bursts to 50 and 150 every 2 and 5 minutes](#latency-is-about-10-milliseconds-with-bursts-to-50-and-150-every-2-and-5-minutes)
 * [A server transitions between healthcheck statuses every 15 seconds](#a-server-transitions-between-healthcheck-statuses-every-15-seconds)
 * [A client emits OTEL telemetry data](#a-client-emits-otel-telemetry-data)
+* [The Northwind data set](#the-northwind-data-set)
 ### 
 
 ### Hello world with Kafka
@@ -536,6 +537,8 @@ This example uses the [`intervals`](https://docs.shadowtraffic.io/functions/inte
 
 This example uses a [state machine](https://docs.shadowtraffic.io/functions/stateMachine/) to weight the probability of a server transitioning from ok, to warn, to bad. The next status mostly resembles the previous one.
 
+---
+
 ### A client emits OTEL telemetry data
 
 [![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](otel.json)
@@ -544,3 +547,14 @@ This example uses a [state machine](https://docs.shadowtraffic.io/functions/stat
 **Discussion**
 
 A reference implementation to generate minimal Open Telemetry events.
+
+---
+
+### The Northwind data set
+
+[![Demo](https://img.shields.io/badge/config-🎁-%2339b9aa)](northwind.json)
+[![Demo](https://img.shields.io/badge/demo-🚀-%2396b939)](https://github.com/codespaces/new?machine=basicLinux32gb&repo=707805347&ref=main&devcontainer_path=.devcontainer%2Fnorthwind%2Fdevcontainer.json)
+
+**Discussion**
+
+A reference configuration to generate an indefinite amount of [Northwind data]() to MotherDuck.

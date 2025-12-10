@@ -1,0 +1,736 @@
+{
+    "generators": [
+        {
+            "name": "regions",
+            "table": "regions",
+            "row": {
+                "region_id": {
+                    "_gen": "sequentialInteger",
+                    "startingFrom": 1
+                },
+                "region_description": {
+                    "_gen": "oneOf",
+                    "choices": [
+                        "Eastern",
+                        "Western",
+                        "Northern",
+                        "Southern"
+                    ]
+                }
+            },
+            "localConfigs": {
+                "maxEvents": 4
+            }
+        },
+        {
+            "name": "categories",
+            "table": "categories",
+            "row": {
+                "category_id": {
+                    "_gen": "sequentialInteger",
+                    "startingFrom": 1
+                },
+                "category_name": {
+                    "_gen": "oneOf",
+                    "choices": [
+                        "Beverages",
+                        "Condiments",
+                        "Confections",
+                        "Dairy Products",
+                        "Grains/Cereals",
+                        "Meat/Poultry",
+                        "Produce",
+                        "Seafood"
+                    ]
+                },
+                "description": {
+                    "_gen": "string",
+                    "expr": "#{Lorem.sentence}"
+                }
+            },
+            "localConfigs": {
+                "maxEvents": 8
+            }
+        },
+        {
+            "name": "suppliers",
+            "table": "suppliers",
+            "row": {
+                "supplier_id": {
+                    "_gen": "sequentialInteger",
+                    "startingFrom": 1
+                },
+                "company_name": {
+                    "_gen": "string",
+                    "expr": "#{Company.name}"
+                },
+                "contact_name": {
+                    "_gen": "string",
+                    "expr": "#{Name.fullName}"
+                },
+                "contact_title": {
+                    "_gen": "oneOf",
+                    "choices": [
+                        "Sales Representative",
+                        "Marketing Manager",
+                        "Sales Manager",
+                        "Owner",
+                        "Order Administrator"
+                    ]
+                },
+                "address": {
+                    "_gen": "string",
+                    "expr": "#{Address.streetAddress}"
+                },
+                "city": {
+                    "_gen": "string",
+                    "expr": "#{Address.city}"
+                },
+                "region": {
+                    "_gen": "string",
+                    "expr": "#{Address.state}",
+                    "null": {
+                        "rate": 0.3
+                    }
+                },
+                "postal_code": {
+                    "_gen": "string",
+                    "expr": "#{Address.zipCode}"
+                },
+                "country": {
+                    "_gen": "oneOf",
+                    "choices": [
+                        "USA",
+                        "UK",
+                        "Japan",
+                        "Spain",
+                        "Australia",
+                        "Brazil",
+                        "Canada",
+                        "Germany",
+                        "France",
+                        "Italy"
+                    ]
+                },
+                "phone": {
+                    "_gen": "string",
+                    "expr": "#{PhoneNumber.phoneNumber}"
+                }
+            },
+            "localConfigs": {
+                "maxEvents": 29
+            }
+        },
+        {
+            "name": "shippers",
+            "table": "shippers",
+            "row": {
+                "shipper_id": {
+                    "_gen": "sequentialInteger",
+                    "startingFrom": 1
+                },
+                "company_name": {
+                    "_gen": "oneOf",
+                    "choices": [
+                        "Speedy Express",
+                        "United Package",
+                        "Federal Shipping"
+                    ]
+                },
+                "phone": {
+                    "_gen": "string",
+                    "expr": "#{PhoneNumber.phoneNumber}"
+                }
+            },
+            "localConfigs": {
+                "maxEvents": 3
+            }
+        },
+        {
+            "name": "employees",
+            "table": "employees",
+            "row": {
+                "employee_id": {
+                    "_gen": "sequentialInteger",
+                    "startingFrom": 1
+                },
+                "last_name": {
+                    "_gen": "string",
+                    "expr": "#{Name.lastName}"
+                },
+                "first_name": {
+                    "_gen": "string",
+                    "expr": "#{Name.firstName}"
+                },
+                "title": {
+                    "_gen": "oneOf",
+                    "choices": [
+                        "Sales Representative",
+                        "Vice President, Sales",
+                        "Sales Manager",
+                        "Inside Sales Coordinator"
+                    ]
+                },
+                "title_of_courtesy": {
+                    "_gen": "oneOf",
+                    "choices": [
+                        "Ms.",
+                        "Dr.",
+                        "Mr.",
+                        "Mrs."
+                    ]
+                },
+                "birth_date": {
+                    "_gen": "normalDistribution",
+                    "mean": 315532800000,
+                    "sd": 157680000000
+                },
+                "hire_date": {
+                    "_gen": "normalDistribution",
+                    "mean": 757382400000,
+                    "sd": 63072000000
+                },
+                "address": {
+                    "_gen": "string",
+                    "expr": "#{Address.streetAddress}"
+                },
+                "city": {
+                    "_gen": "string",
+                    "expr": "#{Address.city}"
+                },
+                "region": {
+                    "_gen": "string",
+                    "expr": "#{Address.state}",
+                    "null": {
+                        "rate": 0.3
+                    }
+                },
+                "postal_code": {
+                    "_gen": "string",
+                    "expr": "#{Address.zipCode}"
+                },
+                "country": {
+                    "_gen": "oneOf",
+                    "choices": [
+                        "USA",
+                        "UK"
+                    ]
+                },
+                "home_phone": {
+                    "_gen": "string",
+                    "expr": "#{PhoneNumber.phoneNumber}"
+                },
+                "extension": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [100, 999],
+                    "decimals": 0,
+                    "cast": "string",
+                    "sqlHint": "text"
+                },
+                "reports_to": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [
+                        1,
+                        9
+                    ],
+                    "decimals": 0,
+                    "null": {
+                        "rate": 0.5
+                    }
+                }
+            },
+            "localConfigs": {
+                "maxEvents": 9
+            }
+        },
+        {
+            "name": "customers",
+            "table": "customers",
+            "row": {
+                "customer_id": {
+                    "_gen": "characterString",
+                    "case": "upper",
+                    "n": 5
+                },
+                "company_name": {
+                    "_gen": "string",
+                    "expr": "#{Company.name}"
+                },
+                "contact_name": {
+                    "_gen": "string",
+                    "expr": "#{Name.fullName}"
+                },
+                "contact_title": {
+                    "_gen": "oneOf",
+                    "choices": [
+                        "Owner",
+                        "Sales Representative",
+                        "Marketing Manager",
+                        "Sales Manager",
+                        "Accounting Manager",
+                        "Sales Associate",
+                        "Order Administrator"
+                    ]
+                },
+                "address": {
+                    "_gen": "string",
+                    "expr": "#{Address.streetAddress}"
+                },
+                "city": {
+                    "_gen": "string",
+                    "expr": "#{Address.city}"
+                },
+                "region": {
+                    "_gen": "string",
+                    "expr": "#{Address.state}",
+                    "null": {
+                        "rate": 0.4
+                    }
+                },
+                "postal_code": {
+                    "_gen": "string",
+                    "expr": "#{Address.zipCode}"
+                },
+                "country": {
+                    "_gen": "oneOf",
+                    "choices": [
+                        "USA",
+                        "Germany",
+                        "Mexico",
+                        "UK",
+                        "Sweden",
+                        "France",
+                        "Spain",
+                        "Canada",
+                        "Argentina",
+                        "Switzerland",
+                        "Brazil",
+                        "Austria",
+                        "Italy",
+                        "Portugal",
+                        "Venezuela",
+                        "Ireland",
+                        "Belgium",
+                        "Norway",
+                        "Denmark",
+                        "Finland",
+                        "Poland"
+                    ]
+                },
+                "phone": {
+                    "_gen": "string",
+                    "expr": "#{PhoneNumber.phoneNumber}"
+                },
+                "fax": {
+                    "_gen": "string",
+                    "expr": "#{PhoneNumber.phoneNumber}",
+                    "null": {
+                        "rate": 0.5
+                    }
+                }
+            },
+            "localConfigs": {
+                "maxEvents": 91
+            }
+        },
+        {
+            "name": "products",
+            "table": "products",
+            "row": {
+                "product_id": {
+                    "_gen": "sequentialInteger",
+                    "startingFrom": 1
+                },
+                "product_name": {
+                    "_gen": "string",
+                    "expr": "#{Commerce.productName}"
+                },
+                "supplier_id": {
+                    "_gen": "lookup",
+                    "table": "suppliers",
+                    "path": [
+                        "row",
+                        "supplier_id"
+                    ]
+                },
+                "category_id": {
+                    "_gen": "lookup",
+                    "table": "categories",
+                    "path": [
+                        "row",
+                        "category_id"
+                    ]
+                },
+                "quantity_per_unit": {
+                    "_gen": "oneOf",
+                    "choices": [
+                        "10 boxes x 20 bags",
+                        "24 - 12 oz bottles",
+                        "12 - 550 ml bottles",
+                        "48 - 6 oz jars",
+                        "36 boxes",
+                        "12 - 8 oz jars",
+                        "12 - 1 lb pkgs.",
+                        "10 - 500 g pkgs.",
+                        "20 - 1 kg tins",
+                        "10 pkgs."
+                    ]
+                },
+                "unit_price": {
+                    "_gen": "normalDistribution",
+                    "mean": 28.5,
+                    "sd": 15.0,
+                    "decimals": 2,
+                    "clamp": [1, 150]
+                },
+                "units_in_stock": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [
+                        0,
+                        125
+                    ],
+                    "decimals": 0
+                },
+                "units_on_order": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [
+                        0,
+                        70
+                    ],
+                    "decimals": 0
+                },
+                "reorder_level": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [
+                        0,
+                        30
+                    ],
+                    "decimals": 0
+                },
+                "discontinued": {
+                    "_gen": "weightedOneOf",
+                    "choices": [
+                        {
+                            "weight": 9,
+                            "value": false
+                        },
+                        {
+                            "weight": 1,
+                            "value": true
+                        }
+                    ]
+                }
+            },
+            "localConfigs": {
+                "maxEvents": 77
+            }
+        },
+        {
+            "name": "orders",
+            "table": "orders",
+            "vars": {
+                "order_date": {
+                    "_gen": "now"
+                }
+            },
+            "row": {
+                "order_id": {
+                    "_gen": "sequentialInteger",
+                    "startingFrom": 10248
+                },
+                "customer_id": {
+                    "_gen": "lookup",
+                    "table": "customers",
+                    "path": [
+                        "row",
+                        "customer_id"
+                    ]
+                },
+                "employee_id": {
+                    "_gen": "lookup",
+                    "table": "employees",
+                    "path": [
+                        "row",
+                        "employee_id"
+                    ]
+                },
+                "order_date": {
+                    "_gen": "var",
+                    "var": "order_date"
+                },
+                "required_date": {
+                    "_gen": "math",
+                    "expr": "order_date + offset",
+                    "names": {
+                        "offset": {
+                            "_gen": "uniformDistribution",
+                            "bounds": [
+                                {
+                                    "_gen": "duration",
+                                    "days": 1
+                                },                                
+                                {
+                                    "_gen": "duration",
+                                    "days": 7
+                                }
+                            ]
+                        }
+                    }
+                },
+                "shipped_date": {
+                    "_gen": "math",
+                    "expr": "order_date + offset",
+                    "names": {
+                        "offset": {
+                            "_gen": "uniformDistribution",
+                            "bounds": [
+                                {
+                                    "_gen": "duration",
+                                    "days": 2
+                                },                                
+                                {
+                                    "_gen": "duration",
+                                    "days": 8
+                                }
+                            ]
+                        }
+                    }
+                },
+                "ship_via": {
+                    "_gen": "lookup",
+                    "table": "shippers",
+                    "path": [
+                        "row",
+                        "shipper_id"
+                    ]
+                },
+                "freight": {
+                    "_gen": "normalDistribution",
+                    "mean": 78.5,
+                    "sd": 15.0,
+                    "decimals": 2
+                },
+                "ship_name": {
+                    "_gen": "string",
+                    "expr": "#{Company.name}"
+                },
+                "ship_address": {
+                    "_gen": "string",
+                    "expr": "#{Address.streetAddress}"
+                },
+                "ship_city": {
+                    "_gen": "string",
+                    "expr": "#{Address.city}"
+                },
+                "ship_region": {
+                    "_gen": "string",
+                    "expr": "#{Address.state}",
+                    "null": {
+                        "rate": 0.4
+                    }
+                },
+                "ship_postal_code": {
+                    "_gen": "string",
+                    "expr": "#{Address.zipCode}"
+                },
+                "ship_country": {
+                    "_gen": "oneOf",
+                    "choices": [
+                        "USA",
+                        "Germany",
+                        "Mexico",
+                        "UK",
+                        "Sweden",
+                        "France",
+                        "Spain",
+                        "Canada",
+                        "Argentina",
+                        "Switzerland",
+                        "Brazil",
+                        "Austria",
+                        "Italy"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "order_details",
+            "table": "order_details",
+            "fork": {
+                "key": {
+                    "_gen": "lookup",
+                    "table": "orders"
+                },
+                "oneTimeKeys": true
+            },
+            "localConfigs": {
+                "maxEvents": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [1, 7]
+                }
+            },
+            "vars": {
+                "product": {
+                    "_gen": "lookup",
+                    "table": "products",
+                    "path": [
+                        "row"
+                    ]
+                }
+            },
+            "row": {
+                "order_id": {
+                    "_gen": "var",
+                    "var": "forkKey",
+                    "path": [
+                        "row",
+                        "order_id"
+                    ]
+                },
+                "product_id": {
+                    "_gen": "var",
+                    "var": "product",
+                    "path": [
+                        "product_id"
+                    ]
+                },
+                "unit_price": {
+                    "_gen": "var",
+                    "var": "product",
+                    "path": [
+                        "unit_price"
+                    ]
+                },
+                "quantity": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [
+                        1,
+                        130
+                    ],
+                    "decimals": 0
+                },
+                "discount": {
+                    "_gen": "weightedOneOf",
+                    "choices": [
+                        {
+                            "weight": 6,
+                            "value": 0
+                        },
+                        {
+                            "weight": 2,
+                            "value": 0.05
+                        },
+                        {
+                            "weight": 1,
+                            "value": 0.1
+                        },
+                        {
+                            "weight": 1,
+                            "value": 0.15
+                        },
+                        {
+                            "weight": 1,
+                            "value": 0.2
+                        },
+                        {
+                            "weight": 1,
+                            "value": 0.25
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "territories",
+            "table": "territories",
+            "row": {
+                "territory_id": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [1581, 99999],
+                    "cast": "string",
+                    "sqlHint": "text"
+                },
+                "territory_description": {
+                    "_gen": "string",
+                    "expr": "#{Address.cityName}"
+                },
+                "region_id": {
+                    "_gen": "lookup",
+                    "table": "regions",
+                    "path": [
+                        "row",
+                        "region_id"
+                    ]
+                }
+            },
+            "localConfigs": {
+                "maxEvents": 53
+            }
+        },
+        {
+            "name": "employee_territories",
+            "table": "employee_territories",
+            "row": {
+                "employee_id": {
+                    "_gen": "lookup",
+                    "table": "employees",
+                    "path": [
+                        "row",
+                        "employee_id"
+                    ]
+                },
+                "territory_id": {
+                    "_gen": "lookup",
+                    "table": "territories",
+                    "path": [
+                        "row",
+                        "territory_id"
+                    ]
+                }
+            },
+            "localConfigs": {
+                "maxEvents": 49
+            }
+        }
+    ],
+    "schedule": {
+        "stages": [
+            {
+                "generators": [
+                    "regions",
+                    "categories",
+                    "suppliers",
+                    "shippers"
+                ]
+            },
+            {
+                "generators": [
+                    "employees",
+                    "customers",
+                    "products",
+                    "territories"
+                ]
+            },
+            {
+                "generators": [
+                    "employee_territories"
+                ]
+            },
+            {
+                "generators": [
+                    "orders",
+                    "order_details"
+                ]
+            }
+        ]
+    },
+    "connections": {
+        "md": {
+            "kind": "motherduck",
+            "connectionConfigs": {
+                "token": "<< your MotherDuck token here >>",
+                "db": "my_db"
+            }
+        }
+    }
+}
