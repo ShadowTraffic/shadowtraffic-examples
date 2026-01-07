@@ -444,16 +444,12 @@
         {
             "name": "orders",
             "table": "orders",
-            "vars": {
-                "order_date": {
+            "varsOnce": {
+                "now": {
                     "_gen": "now"
                 }
             },
-            "row": {
-                "order_id": {
-                    "_gen": "sequentialInteger",
-                    "startingFrom": 10248
-                },
+            "vars": {
                 "customer_id": {
                     "_gen": "lookup",
                     "table": "customers",
@@ -468,6 +464,60 @@
                             { "bin": 0.80, "frequency": 20 }
                         ]
                     }
+                },
+                "stop_boundary": {
+                    "_gen": "cache",
+                    "on": {
+                        "_gen": "var",
+                        "var": "customer_id"
+                    },
+                    "to": {
+                        "_gen": "math",
+                        "expr": "now - offset",
+                        "names": {
+                            "offset": {
+                                "_gen": "uniformDistribution",
+                                "bounds": [
+                                    0,
+                                    {
+                                        "_gen": "duration",
+                                        "days": 30
+                                    }
+                                ]
+                            }
+                        },
+                        "decimals": 0
+                    }
+                },
+                "order_date": {
+                    "_gen": "uniformDistribution",
+                    "bounds": [
+                        {
+                            "_gen": "math",
+                            "expr": "now - oneYear",
+                            "names": {
+                                "oneYear": {
+                                    "_gen": "duration",
+                                    "days": 365
+                                }
+                            }
+                        },
+                        {
+                            "_gen": "var",
+                            "var": "stop_boundary"
+                        }
+                    ],
+                    "decimals": 0
+                }
+            },
+            "row": {
+                "order_id": {
+                    "_gen": "sequentialInteger",
+                    "startingFrom": 10248
+                },
+                "customer_id": {
+                    "_gen": "var",
+                    "var": "customer_id"
                 },
                 "employee_id": {
                     "_gen": "lookup",
