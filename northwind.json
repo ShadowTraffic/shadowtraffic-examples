@@ -351,7 +351,15 @@
                     "path": [
                         "row",
                         "supplier_id"
-                    ]
+                    ],
+                    "histogram": {
+                        "_gen": "histogram",
+                        "bins": [
+                            { "bin": 0.20, "frequency": 60 },
+                            { "bin": 0.75, "frequency": 30 },
+                            { "bin": 0.05, "frequency": 10 }
+                        ]
+                    }
                 },
                 "category_id": {
                     "_gen": "lookup",
@@ -359,7 +367,15 @@
                     "path": [
                         "row",
                         "category_id"
-                    ]
+                    ],
+                    "histogram": {
+                        "_gen": "histogram",
+                        "bins": [
+                            { "bin": 0.75, "frequency": 55 },
+                            { "bin": 0.15, "frequency": 30 },
+                            { "bin": 0.10, "frequency": 15 }
+                        ]
+                    }
                 },
                 "quantity_per_unit": {
                     "_gen": "oneOf",
@@ -444,7 +460,14 @@
                     "path": [
                         "row",
                         "customer_id"
-                    ]
+                    ],
+                    "histogram": {
+                        "_gen": "histogram",
+                        "bins": [
+                            { "bin": 0.20, "frequency": 80 },
+                            { "bin": 0.80, "frequency": 20 }
+                        ]
+                    }
                 },
                 "employee_id": {
                     "_gen": "lookup",
@@ -452,7 +475,15 @@
                     "path": [
                         "row",
                         "employee_id"
-                    ]
+                    ],
+                    "histogram": {
+                        "_gen": "histogram",
+                        "bins": [
+                            { "bin": 0.20, "frequency": 70 },
+                            { "bin": 0.50, "frequency": 20 },
+                            { "bin": 0.30, "frequency": 10 }
+                        ]
+                    }
                 },
                 "order_date": {
                     "_gen": "var",
@@ -502,7 +533,15 @@
                     "path": [
                         "row",
                         "shipper_id"
-                    ]
+                    ],
+                    "histogram": {
+                        "_gen": "histogram",
+                        "bins": [
+                            { "bin": 0.30, "frequency": 60 },
+                            { "bin": 0.67, "frequency": 30 },
+                            { "bin": 0.03, "frequency": 10 }
+                        ]
+                    }
                 },
                 "freight": {
                     "_gen": "normalDistribution",
@@ -534,21 +573,21 @@
                     "expr": "#{Address.zipCode}"
                 },
                 "ship_country": {
-                    "_gen": "oneOf",
+                    "_gen": "weightedOneOf",
                     "choices": [
-                        "USA",
-                        "Germany",
-                        "Mexico",
-                        "UK",
-                        "Sweden",
-                        "France",
-                        "Spain",
-                        "Canada",
-                        "Argentina",
-                        "Switzerland",
-                        "Brazil",
-                        "Austria",
-                        "Italy"
+                        { "weight": 45, "value": "USA" },
+                        { "weight": 15, "value": "Canada" },
+                        { "weight": 12, "value": "UK" },
+                        { "weight": 10, "value": "Germany" },
+                        { "weight": 5, "value": "France" },
+                        { "weight": 4, "value": "Mexico" },
+                        { "weight": 3, "value": "Spain" },
+                        { "weight": 2, "value": "Italy" },
+                        { "weight": 2, "value": "Brazil" },
+                        { "weight": 1, "value": "Argentina" },
+                        { "weight": 1, "value": "Switzerland" },
+                        { "weight": 0.5, "value": "Austria" },
+                        { "weight": 0.5, "value": "Sweden" }
                     ]
                 }
             }
@@ -565,8 +604,21 @@
             },
             "localConfigs": {
                 "maxEvents": {
-                    "_gen": "uniformDistribution",
-                    "bounds": [1, 7]
+                    "_gen": "weightedOneOf",
+                    "choices": [
+                        {
+                            "weight": 3,
+                            "value": 1
+                        },
+                        {
+                            "weight": 1,
+                            "value": {
+                                "_gen": "uniformDistribution",
+                                "bounds": [2, 7]
+                            }
+                        }
+                    ],
+                    "decimals": 0
                 }
             },
             "vars": {
@@ -575,7 +627,15 @@
                     "table": "products",
                     "path": [
                         "row"
-                    ]
+                    ],
+                    "histogram": {
+                        "_gen": "histogram",
+                        "bins": [
+                            { "bin": 0.10, "frequency": 50 },
+                            { "bin": 0.30, "frequency": 35 },
+                            { "bin": 0.60, "frequency": 15 }
+                        ]
+                    }
                 }
             },
             "row": {
@@ -602,10 +662,23 @@
                     ]
                 },
                 "quantity": {
-                    "_gen": "uniformDistribution",
-                    "bounds": [
-                        1,
-                        130
+                    "_gen": "weightedOneOf",
+                    "choices": [
+                        {
+                            "weight": 4,
+                            "value": {
+                                "_gen": "uniformDistribution",
+                                "bounds": [1, 2]
+                            }
+                        },
+                        {
+                            "weight": 1,
+                            "value": {
+                                "_gen": "normalDistribution",
+                                "mean": 5,
+                                "sd": 2
+                            }
+                        }
                     ],
                     "decimals": 0
                 },
@@ -660,7 +733,16 @@
                     "path": [
                         "row",
                         "region_id"
-                    ]
+                    ],
+                    "histogram": {
+                        "_gen": "histogram",
+                        "bins": [
+                            { "bin": 0.45, "frequency": 60 },
+                            { "bin": 0.25, "frequency": 30 },
+                            { "bin": 0.20, "frequency": 20 },
+                            { "bin": 0.10, "frequency": 10 }
+                        ]
+                    }
                 }
             },
             "localConfigs": {
@@ -677,7 +759,15 @@
                     "path": [
                         "row",
                         "employee_id"
-                    ]
+                    ],
+                    "histogram": {
+                        "_gen": "histogram",
+                        "bins": [
+                            { "bin": 0.20, "frequency": 70 },
+                            { "bin": 0.50, "frequency": 20 },
+                            { "bin": 0.30, "frequency": 10 }
+                        ]
+                    }
                 },
                 "territory_id": {
                     "_gen": "lookup",
@@ -685,7 +775,15 @@
                     "path": [
                         "row",
                         "territory_id"
-                    ]
+                    ],
+                    "histogram": {
+                        "_gen": "histogram",
+                        "bins": [
+                            { "bin": 0.25, "frequency": 50 },
+                            { "bin": 0.65, "frequency": 30 },
+                            { "bin": 0.10, "frequency": 15 }
+                        ]
+                    }
                 }
             },
             "localConfigs": {
@@ -727,8 +825,13 @@
     "connections": {
         "md": {
             "kind": "motherduck",
+            "tablePolicy": "dropAndCreate",
             "connectionConfigs": {
-                "token": "<< your MotherDuck token here >>",
+                "token": {
+                    "_gen": "env",
+                    "var": "MOTHERDUCK_TOKEN",
+                    "mask": true
+                },
                 "db": "my_db"
             }
         }
