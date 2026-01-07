@@ -537,7 +537,8 @@
                 },
                 "order_date": {
                     "_gen": "var",
-                    "var": "order_date"
+                    "var": "order_date",
+                    "sqlHint": "timestamp"
                 },
                 "required_date": {
                     "_gen": "math",
@@ -556,7 +557,8 @@
                                 }
                             ]
                         }
-                    }
+                    },
+                    "sqlHint": "timestamp"
                 },
                 "shipped_date": {
                     "_gen": "math",
@@ -575,7 +577,8 @@
                                 }
                             ]
                         }
-                    }
+                    },
+                    "sqlHint": "timestamp"
                 },
                 "ship_via": {
                     "_gen": "lookup",
