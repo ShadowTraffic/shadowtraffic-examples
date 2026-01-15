@@ -442,14 +442,17 @@
             }
         },
         {
-            "name": "orders",
-            "table": "orders",
+            "name": "orders_and_details",
             "varsOnce": {
                 "now": {
                     "_gen": "now"
                 }
             },
             "vars": {
+                "order_id": {
+                    "_gen": "sequentialInteger",
+                    "startingFrom": 10248
+                },
                 "customer_id": {
                     "_gen": "lookup",
                     "table": "customers",
@@ -510,259 +513,251 @@
                     "decimals": 0
                 }
             },
-            "row": {
-                "order_id": {
-                    "_gen": "sequentialInteger",
-                    "startingFrom": 10248
-                },
-                "customer_id": {
-                    "_gen": "var",
-                    "var": "customer_id"
-                },
-                "employee_id": {
-                    "_gen": "lookup",
-                    "table": "employees",
-                    "path": [
-                        "row",
-                        "employee_id"
-                    ],
-                    "histogram": {
-                        "_gen": "histogram",
-                        "bins": [
-                            { "bin": 0.20, "frequency": 70 },
-                            { "bin": 0.50, "frequency": 20 },
-                            { "bin": 0.30, "frequency": 10 }
-                        ]
-                    }
-                },
-                "order_date": {
-                    "_gen": "var",
-                    "var": "order_date",
-                    "sqlHint": "timestamp"
-                },
-                "required_date": {
-                    "_gen": "math",
-                    "expr": "order_date + offset",
-                    "names": {
-                        "offset": {
-                            "_gen": "uniformDistribution",
-                            "bounds": [
-                                {
-                                    "_gen": "duration",
-                                    "days": 1
-                                },                                
-                                {
-                                    "_gen": "duration",
-                                    "days": 7
+            "tables": {
+                "orders": {
+                    "row": {
+                        "order_id": {
+                            "_gen": "var",
+                            "var": "order_id"
+                        },
+                        "customer_id": {
+                            "_gen": "var",
+                            "var": "customer_id"
+                        },
+                        "employee_id": {
+                            "_gen": "lookup",
+                            "table": "employees",
+                            "path": [
+                                "row",
+                                "employee_id"
+                            ],
+                            "histogram": {
+                                "_gen": "histogram",
+                                "bins": [
+                                    { "bin": 0.20, "frequency": 70 },
+                                    { "bin": 0.50, "frequency": 20 },
+                                    { "bin": 0.30, "frequency": 10 }
+                                ]
+                            }
+                        },
+                        "order_date": {
+                            "_gen": "var",
+                            "var": "order_date",
+                            "sqlHint": "timestamp"
+                        },
+                        "required_date": {
+                            "_gen": "math",
+                            "expr": "order_date + offset",
+                            "names": {
+                                "offset": {
+                                    "_gen": "uniformDistribution",
+                                    "bounds": [
+                                        {
+                                            "_gen": "duration",
+                                            "days": 1
+                                        },                                
+                                        {
+                                            "_gen": "duration",
+                                            "days": 7
+                                        }
+                                    ]
                                 }
+                            },
+                            "sqlHint": "timestamp"
+                        },
+                        "shipped_date": {
+                            "_gen": "math",
+                            "expr": "order_date + offset",
+                            "names": {
+                                "offset": {
+                                    "_gen": "uniformDistribution",
+                                    "bounds": [
+                                        {
+                                            "_gen": "duration",
+                                            "days": 2
+                                        },                                
+                                        {
+                                            "_gen": "duration",
+                                            "days": 8
+                                        }
+                                    ]
+                                }
+                            },
+                            "sqlHint": "timestamp"
+                        },
+                        "ship_via": {
+                            "_gen": "lookup",
+                            "table": "shippers",
+                            "path": [
+                                "row",
+                                "shipper_id"
+                            ],
+                            "histogram": {
+                                "_gen": "histogram",
+                                "bins": [
+                                    { "bin": 0.30, "frequency": 60 },
+                                    { "bin": 0.67, "frequency": 30 },
+                                    { "bin": 0.03, "frequency": 10 }
+                                ]
+                            }
+                        },
+                        "freight": {
+                            "_gen": "normalDistribution",
+                            "mean": 78.5,
+                            "sd": 15.0,
+                            "decimals": 2
+                        },
+                        "ship_name": {
+                            "_gen": "string",
+                            "expr": "#{Company.name}"
+                        },
+                        "ship_address": {
+                            "_gen": "string",
+                            "expr": "#{Address.streetAddress}"
+                        },
+                        "ship_city": {
+                            "_gen": "string",
+                            "expr": "#{Address.city}"
+                        },
+                        "ship_region": {
+                            "_gen": "string",
+                            "expr": "#{Address.state}",
+                            "null": {
+                                "rate": 0.4
+                            }
+                        },
+                        "ship_postal_code": {
+                            "_gen": "string",
+                            "expr": "#{Address.zipCode}"
+                        },
+                        "ship_country": {
+                            "_gen": "weightedOneOf",
+                            "choices": [
+                                { "weight": 45, "value": "USA" },
+                                { "weight": 15, "value": "Canada" },
+                                { "weight": 12, "value": "UK" },
+                                { "weight": 10, "value": "Germany" },
+                                { "weight": 5, "value": "France" },
+                                { "weight": 4, "value": "Mexico" },
+                                { "weight": 3, "value": "Spain" },
+                                { "weight": 2, "value": "Italy" },
+                                { "weight": 2, "value": "Brazil" },
+                                { "weight": 1, "value": "Argentina" },
+                                { "weight": 1, "value": "Switzerland" },
+                                { "weight": 0.5, "value": "Austria" },
+                                { "weight": 0.5, "value": "Sweden" }
                             ]
                         }
-                    },
-                    "sqlHint": "timestamp"
+                    }
                 },
-                "shipped_date": {
-                    "_gen": "math",
-                    "expr": "order_date + offset",
-                    "names": {
-                        "offset": {
-                            "_gen": "uniformDistribution",
-                            "bounds": [
+                "order_details": {
+                    "rows": {
+                        "_gen": "repeatedly",
+                        "n": {
+                            "_gen": "weightedOneOf",
+                            "choices": [
                                 {
-                                    "_gen": "duration",
-                                    "days": 2
-                                },                                
+                                    "weight": 3,
+                                    "value": 1
+                                },
                                 {
-                                    "_gen": "duration",
-                                    "days": 8
+                                    "weight": 1,
+                                    "value": {
+                                        "_gen": "uniformDistribution",
+                                        "bounds": [2, 7]
+                                    }
                                 }
-                            ]
-                        }
-                    },
-                    "sqlHint": "timestamp"
-                },
-                "ship_via": {
-                    "_gen": "lookup",
-                    "table": "shippers",
-                    "path": [
-                        "row",
-                        "shipper_id"
-                    ],
-                    "histogram": {
-                        "_gen": "histogram",
-                        "bins": [
-                            { "bin": 0.30, "frequency": 60 },
-                            { "bin": 0.67, "frequency": 30 },
-                            { "bin": 0.03, "frequency": 10 }
-                        ]
-                    }
-                },
-                "freight": {
-                    "_gen": "normalDistribution",
-                    "mean": 78.5,
-                    "sd": 15.0,
-                    "decimals": 2
-                },
-                "ship_name": {
-                    "_gen": "string",
-                    "expr": "#{Company.name}"
-                },
-                "ship_address": {
-                    "_gen": "string",
-                    "expr": "#{Address.streetAddress}"
-                },
-                "ship_city": {
-                    "_gen": "string",
-                    "expr": "#{Address.city}"
-                },
-                "ship_region": {
-                    "_gen": "string",
-                    "expr": "#{Address.state}",
-                    "null": {
-                        "rate": 0.4
-                    }
-                },
-                "ship_postal_code": {
-                    "_gen": "string",
-                    "expr": "#{Address.zipCode}"
-                },
-                "ship_country": {
-                    "_gen": "weightedOneOf",
-                    "choices": [
-                        { "weight": 45, "value": "USA" },
-                        { "weight": 15, "value": "Canada" },
-                        { "weight": 12, "value": "UK" },
-                        { "weight": 10, "value": "Germany" },
-                        { "weight": 5, "value": "France" },
-                        { "weight": 4, "value": "Mexico" },
-                        { "weight": 3, "value": "Spain" },
-                        { "weight": 2, "value": "Italy" },
-                        { "weight": 2, "value": "Brazil" },
-                        { "weight": 1, "value": "Argentina" },
-                        { "weight": 1, "value": "Switzerland" },
-                        { "weight": 0.5, "value": "Austria" },
-                        { "weight": 0.5, "value": "Sweden" }
-                    ]
-                }
-            }
-        },
-        {
-            "name": "order_details",
-            "table": "order_details",
-            "fork": {
-                "key": {
-                    "_gen": "lookup",
-                    "table": "orders"
-                },
-                "oneTimeKeys": true
-            },
-            "localConfigs": {
-                "maxEvents": {
-                    "_gen": "weightedOneOf",
-                    "choices": [
-                        {
-                            "weight": 3,
-                            "value": 1
+                            ],
+                            "decimals": 0
                         },
-                        {
-                            "weight": 1,
-                            "value": {
-                                "_gen": "uniformDistribution",
-                                "bounds": [2, 7]
-                            }
-                        }
-                    ],
-                    "decimals": 0
-                }
-            },
-            "vars": {
-                "product": {
-                    "_gen": "lookup",
-                    "table": "products",
-                    "path": [
-                        "row"
-                    ],
-                    "histogram": {
-                        "_gen": "histogram",
-                        "bins": [
-                            { "bin": 0.10, "frequency": 50 },
-                            { "bin": 0.30, "frequency": 35 },
-                            { "bin": 0.60, "frequency": 15 }
-                        ]
-                    }
-                }
-            },
-            "row": {
-                "order_id": {
-                    "_gen": "var",
-                    "var": "forkKey",
-                    "path": [
-                        "row",
-                        "order_id"
-                    ]
-                },
-                "product_id": {
-                    "_gen": "var",
-                    "var": "product",
-                    "path": [
-                        "product_id"
-                    ]
-                },
-                "unit_price": {
-                    "_gen": "var",
-                    "var": "product",
-                    "path": [
-                        "unit_price"
-                    ]
-                },
-                "quantity": {
-                    "_gen": "weightedOneOf",
-                    "choices": [
-                        {
-                            "weight": 4,
-                            "value": {
-                                "_gen": "uniformDistribution",
-                                "bounds": [1, 2]
+                        "localVars": {
+                            "product": {
+                                "_gen": "lookup",
+                                "table": "products",
+                                "path": [
+                                    "row"
+                                ],
+                                "histogram": {
+                                    "_gen": "histogram",
+                                    "bins": [
+                                        { "bin": 0.10, "frequency": 50 },
+                                        { "bin": 0.30, "frequency": 35 },
+                                        { "bin": 0.60, "frequency": 15 }
+                                    ]
+                                }
                             }
                         },
-                        {
-                            "weight": 1,
-                            "value": {
-                                "_gen": "normalDistribution",
-                                "mean": 5,
-                                "sd": 2
+                        "target": {
+                            "order_id": {
+                                "_gen": "var",
+                                "var": "order_id"
+                            },
+                            "product_id": {
+                                "_gen": "var",
+                                "var": "product",
+                                "path": [
+                                    "product_id"
+                                ]
+                            },
+                            "unit_price": {
+                                "_gen": "var",
+                                "var": "product",
+                                "path": [
+                                    "unit_price"
+                                ]
+                            },
+                            "quantity": {
+                                "_gen": "weightedOneOf",
+                                "choices": [
+                                    {
+                                        "weight": 4,
+                                        "value": {
+                                            "_gen": "uniformDistribution",
+                                            "bounds": [1, 2]
+                                        }
+                                    },
+                                    {
+                                        "weight": 1,
+                                        "value": {
+                                            "_gen": "normalDistribution",
+                                            "mean": 5,
+                                            "sd": 2
+                                        }
+                                    }
+                                ],
+                                "decimals": 0
+                            },
+                            "discount": {
+                                "_gen": "weightedOneOf",
+                                "choices": [
+                                    {
+                                        "weight": 6,
+                                        "value": 0
+                                    },
+                                    {
+                                        "weight": 2,
+                                        "value": 0.05
+                                    },
+                                    {
+                                        "weight": 1,
+                                        "value": 0.1
+                                    },
+                                    {
+                                        "weight": 1,
+                                        "value": 0.15
+                                    },
+                                    {
+                                        "weight": 1,
+                                        "value": 0.2
+                                    },
+                                    {
+                                        "weight": 1,
+                                        "value": 0.25
+                                    }
+                                ]
                             }
                         }
-                    ],
-                    "decimals": 0
-                },
-                "discount": {
-                    "_gen": "weightedOneOf",
-                    "choices": [
-                        {
-                            "weight": 6,
-                            "value": 0
-                        },
-                        {
-                            "weight": 2,
-                            "value": 0.05
-                        },
-                        {
-                            "weight": 1,
-                            "value": 0.1
-                        },
-                        {
-                            "weight": 1,
-                            "value": 0.15
-                        },
-                        {
-                            "weight": 1,
-                            "value": 0.2
-                        },
-                        {
-                            "weight": 1,
-                            "value": 0.25
-                        }
-                    ]
+                    }
                 }
             }
         },
@@ -869,8 +864,7 @@
             },
             {
                 "generators": [
-                    "orders",
-                    "order_details"
+                    "orders_and_details"
                 ]
             }
         ]
